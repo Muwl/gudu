@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="vip.gudugudu.gudu.ui.main.HomeFragment">
+    tools:context="vip.gudugudu.gudu.ui.main.PersonFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView

@@ -1,34 +1,40 @@
 <resources>
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-        <item name="android:windowIsTranslucent">true</item>
-
-        <item name="android:windowBackground">@android:color/transparent</item>
-    </style>
-
     <!-- Base application theme. -->
-    <style name="AppThemeDay" parent="AppTheme">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="windowNoTitle">true</item>
     </style>
 
+    <!--<style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">-->
+        <!--<item name="windowActionBar">false</item>-->
+        <!--<item name="windowNoTitle">true</item>-->
+    <!--</style>-->
 
-    <style name="AppThemeNight" parent="AppTheme">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">#E91E63</item>
-        <item name="colorPrimaryDark">#E91E63</item>
-        <item name="colorAccent">@color/colorPrimary</item>
-    </style>
+    <!--&lt;!&ndash; Base application theme. &ndash;&gt;-->
+    <!--<style name="AppThemeDay" parent="AppTheme">-->
+        <!--&lt;!&ndash; Customize your theme here. &ndash;&gt;-->
+        <!--<item name="colorPrimary">@color/colorPrimary</item>-->
+        <!--<item name="colorPrimaryDark">@color/colorPrimary</item>-->
+        <!--<item name="colorAccent">@color/colorAccent</item>-->
+    <!--</style>-->
 
-    <style name="AppTheme.NoActionBar">
 
-    </style>
+    <!--<style name="AppThemeNight" parent="AppTheme">-->
+        <!--&lt;!&ndash; Customize your theme here. &ndash;&gt;-->
+        <!--<item name="colorPrimary">#E91E63</item>-->
+        <!--<item name="colorPrimaryDark">#E91E63</item>-->
+        <!--<item name="colorAccent">@color/colorPrimary</item>-->
+    <!--</style>-->
 
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+    <!--<style name="AppTheme.NoActionBar">-->
 
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+    <!--</style>-->
+
+    <!--<style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>-->
+
+    <!--<style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>-->
 
 </resources>

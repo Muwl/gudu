@@ -15,7 +15,6 @@ import vip.gudugudu.gudu.base.util.TUtil;
  * Created by Administrator on 2016/4/5.
  */
 public abstract class BaseActivity<T extends BasePresenter, E extends BaseModel> extends AppCompatActivity {
-    public boolean isNight;
     public T mPresenter;
     public E mModel;
     public Context mContext;
@@ -25,8 +24,6 @@ public abstract class BaseActivity<T extends BasePresenter, E extends BaseModel>
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        isNight = SpUtil.isNight();
-        setTheme(isNight ? R.style.AppThemeNight : R.style.AppThemeDay);
         this.setContentView(this.getLayoutId());
         ButterKnife.bind(this);
         mContext = this;
@@ -46,7 +43,6 @@ public abstract class BaseActivity<T extends BasePresenter, E extends BaseModel>
     @Override
     protected void onResume() {
         super.onResume();
-        if (isNight != SpUtil.isNight()) reload();
     }
 
     public void reload() {

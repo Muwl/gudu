@@ -17,15 +17,15 @@ public class SpUtil {
         prefs = PreferenceManager.getDefaultSharedPreferences(context);
     }
 
-    public static boolean isNight() {
-        return prefs.getBoolean("isNight", false);
-    }
-
-    public static void setNight(Context context, boolean isNight) {
-        prefs.edit().putBoolean("isNight", isNight).commit();
-        if (context instanceof BaseActivity)
-            ((BaseActivity) context).reload();
-    }
+//    public static boolean isNight() {
+//        return prefs.getBoolean("isNight", false);
+//    }
+//
+//    public static void setNight(Context context, boolean isNight) {
+//        prefs.edit().putBoolean("isNight", isNight).commit();
+//        if (context instanceof BaseActivity)
+//            ((BaseActivity) context).reload();
+//    }
 
 
 }
