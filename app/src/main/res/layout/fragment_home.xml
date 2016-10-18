@@ -2,7 +2,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context="vip.gudugudu.gudu.ui.main.HomeFragment">
@@ -13,6 +12,7 @@
        android:orientation="horizontal"
        android:paddingLeft="10dp"
        android:paddingRight="10dp"
+       android:background="@color/bom_text_checked"
        android:gravity="center_vertical">
 
        <android.support.design.widget.TabLayout

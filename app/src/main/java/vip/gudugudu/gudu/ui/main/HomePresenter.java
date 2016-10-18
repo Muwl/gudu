@@ -8,8 +8,11 @@ public class HomePresenter extends HomeContract.Presenter{
 
     @Override
     public void onStart() {
-
+        getTabList();
     }
 
-
+    @Override
+    public void getTabList() {
+        mView.showTabList(mModel.getTabs());
+    }
 }
