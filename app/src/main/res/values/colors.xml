@@ -6,8 +6,12 @@
     <color name="colorAccent">#E91E63</color>
     <color name="white">#ffffff</color>
     <color name="bom_text_normal">#666666</color>
-    <color name="bom_text_checked">#d43d3d</color>
+    <color name="head_bg">#d43d3d</color>
     <color name="home_list_text">#333333</color>
+    <color name="division">#dedede</color>
+    <color name="texthiht">#999999</color>
+    <color name="item_press">#f4f5f6</color>
+
 
 
 

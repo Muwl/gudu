@@ -1,13 +1,93 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="#f4f5f6"
+    android:orientation="vertical"
     android:layout_height="match_parent"
     tools:context="vip.gudugudu.gudu.ui.main.PersonFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="3333333" />
+        android:layout_height="200dp"
+        android:background="@mipmap/person_bg">
+        
+        <vip.gudugudu.gudu.view.widget.CircleImageView
+            android:id="@+id/person_icon"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@mipmap/ic_launcher"
+            android:layout_centerInParent="true"/>
 
-</FrameLayout>
+        <TextView
+            android:id="@+id/person_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:layout_marginTop="8dp"
+            android:layout_below="@id/person_icon"
+            android:text="笑了的乐乐"
+            android:layout_centerHorizontal="true"
+            android:textSize="@dimen/first_font"
+            />
+
+
+    </RelativeLayout>
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/division"
+        android:layout_marginTop="8dp"/>
+
+    <TextView
+        android:id="@+id/person_setting"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/item_bg"
+        android:clickable="true"
+        android:paddingLeft="10dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingRight="10dp"
+        android:textColor="#333333"
+        android:drawableRight="@mipmap/gray_go"
+        android:text="设置"
+        android:textSize="@dimen/second_font"/>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/division"/>
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/division"
+        android:layout_marginTop="15dp"/>
+
+    <TextView
+        android:id="@+id/person_feedback"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/item_bg"
+        android:clickable="true"
+        android:paddingLeft="10dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingRight="10dp"
+        android:textColor="#333333"
+        android:drawableRight="@mipmap/gray_go"
+        android:text="反馈"
+        android:textSize="@dimen/second_font"/>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/division"/>
+
+
+
+
+</LinearLayout>

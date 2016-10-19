@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:paddingTop="7dp"
+    android:paddingBottom="7dp"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+
+        <vip.gudugudu.gudu.view.widget.CircleImageView
+            android:id="@+id/itemdis_icon"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:src="@mipmap/ic_launcher"
+            />
+
+        <TextView
+            android:id="@+id/itemdis_name"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:textColor="#333333"
+            android:text="路人甲"
+            android:layout_marginLeft="12dp"
+            android:textSize="@dimen/second_font"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/itemdis_atten"
+            android:layout_width="wrap_content"
+            android:drawableLeft="@mipmap/dis_atten"
+            android:textColor="#999999"
+            android:text="4433"
+            android:layout_marginLeft="12dp"
+            android:drawablePadding="3dp"
+            android:textSize="@dimen/thrid_font"
+            android:layout_height="wrap_content" />
+
+
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/itemdis_content"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="50dp"
+        android:textColor="#333333"
+        android:textSize="@dimen/second_font"
+        android:layout_marginRight="20dp"
+        android:text="爱我的就瓦伦丁节"
+        android:layout_marginTop="2dp"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/itemdis_time"
+        android:layout_width="wrap_content"
+        android:textColor="#999999"
+        android:text="54分钟"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="50dp"
+        android:drawablePadding="3dp"
+        android:textSize="@dimen/thrid_font"
+        android:layout_height="wrap_content" />
+
+
+
+</LinearLayout>
