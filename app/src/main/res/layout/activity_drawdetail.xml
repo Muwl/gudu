@@ -9,12 +9,7 @@
         android:id="@+id/drawdetail_title"
         layout="@layout/activity_title" />
 
-    <ImageView
-        android:id="@+id/drawdetail_bomlin"
-        android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:layout_above="@id/drawdetail_bom"
-        android:background="@color/division" />
+
 
     <RelativeLayout
         android:id="@+id/drawdetail_bom"
@@ -66,6 +61,13 @@
             android:textSize="@dimen/second_font" />
 
     </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/drawdetail_bomlin"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_above="@id/drawdetail_bom"
+        android:background="@color/division" />
 
 
     <ScrollView

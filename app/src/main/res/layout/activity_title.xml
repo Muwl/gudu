@@ -24,5 +24,19 @@
         android:text="详情"/>
 
 
+    <TextView
+        android:id="@+id/title_send"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:paddingLeft="10dp"
+        android:clickable="true"
+        android:visibility="gone"
+        android:paddingRight="10dp"
+        android:text="发送"
+        android:textColor="@color/title_rig_btn"
+        android:layout_alignParentRight="true"/>
+
+
 
 </RelativeLayout>

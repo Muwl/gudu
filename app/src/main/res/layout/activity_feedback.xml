@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:background="@color/white"
+    android:layout_height="match_parent">
+
+    <include
+        android:id="@+id/feedback_title"
+        layout="@layout/activity_title"/>
+
+
+    <EditText
+        android:id="@+id/feedback_content"
+        android:layout_width="match_parent"
+        android:textSize="@dimen/second_font"
+        android:textColor="#333333"
+        android:layout_margin="10dp"
+        android:padding="8dp"
+        android:gravity="top"
+        android:background="@drawable/feedback_bg"
+        android:hint="请输入您想说的话..."
+        android:lines="5"
+        android:textColorHint="#999999"
+        android:layout_height="wrap_content" />
+
+
+    <EditText
+        android:id="@+id/feedback_phone"
+        android:layout_width="match_parent"
+        android:textSize="@dimen/second_font"
+        android:textColor="#333333"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:padding="8dp"
+        android:gravity="top"
+        android:background="@drawable/feedback_bg"
+        android:hint="输入QQ、邮箱、或者手机等联系方式"
+        android:lines="1"
+        android:textColorHint="#999999"
+        android:layout_height="wrap_content" />
+</LinearLayout>
