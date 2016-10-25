@@ -1,4 +1,4 @@
-package vip.gudugudu.gudu.ui.main;
+package vip.gudugudu.gudu.data.entity;
 
 import java.io.Serializable;
 
@@ -8,17 +8,15 @@ import java.io.Serializable;
  */
 
 public class TableShowEntity implements Serializable{
-    public String tip;
-    public String type;
+    public String ClassName;
+    public String PinYin;
 
     public TableShowEntity() {
         super();
     }
 
-    public TableShowEntity(String tip,String type) {
-        super();
-        this.tip=tip;
-        this.type=type;
+    public TableShowEntity(String className, String pinYin) {
+        ClassName = className;
+        PinYin = pinYin;
     }
-
 }

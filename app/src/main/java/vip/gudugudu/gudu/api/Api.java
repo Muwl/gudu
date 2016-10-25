@@ -28,9 +28,9 @@ import vip.gudugudu.gudu.base.util.NetWorkUtil;
  */
 public class Api {
 
-    public static final String X_LC_Id = "i7j2k7bm26g7csk7uuegxlvfyw79gkk4p200geei8jmaevmx";
-    public static final String X_LC_Key = "n6elpebcs84yjeaj5ht7x0eii9z83iea8bec9szerejj7zy3";
-    public static final String BASE_URL = "https://leancloud.cn:443/1.1/";
+//    public static final String X_LC_Id = "i7j2k7bm26g7csk7uuegxlvfyw79gkk4p200geei8jmaevmx";
+//    public static final String X_LC_Key = "n6elpebcs84yjeaj5ht7x0eii9z83iea8bec9szerejj7zy3";
+    public static final String BASE_URL = "http://103.212.33.179:8888/API/";
 
     public static final int DEFAULT_TIMEOUT = 5;
 
@@ -38,8 +38,8 @@ public class Api {
     public ApiService service;
 
     Interceptor mInterceptor = (chain) -> chain.proceed(chain.request().newBuilder()
-            .addHeader("X-LC-Id", X_LC_Id)
-            .addHeader("X-LC-Key", X_LC_Key)
+//            .addHeader("X-LC-Id", X_LC_Id)
+//            .addHeader("X-LC-Key", X_LC_Key)
             .addHeader("Content-Type", "application/json")
             .build());
 
@@ -73,14 +73,19 @@ public class Api {
         service = retrofit.create(ApiService.class);
     }
 
-    //在访问HttpMethods时创建单例
-    private static class SingletonHolder {
-        private static final Api INSTANCE = new Api();
-    }
+//    //在访问HttpMethods时创建单例
+//    private static class SingletonHolder {
+//        private static final Api INSTANCE = new Api();
+//    }
+    public static Api api;
 
     //获取单例
     public static Api getInstance() {
-        return SingletonHolder.INSTANCE;
+        if (api==null){
+            api=new Api();
+        }
+        return api;
+//        return SingletonHolder.INSTANCE;
     }
 
 

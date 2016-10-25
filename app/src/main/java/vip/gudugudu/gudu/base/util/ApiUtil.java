@@ -48,22 +48,22 @@ public class ApiUtil {
                     @Override
                     public Observable<String> call(ReturnState returnState) {
                         if (returnState==null){
-                            return  Observable.just(RETURN_ERROR);
+                            return  Observable.just(RETURN_ERROR).compose(RxSchedulers.io_main());
                         }
                         if (returnState.resCode==RETURN_ERR){
-                            return Observable.just(RETURN_ERROR);
+                            return Observable.just(RETURN_ERROR).compose(RxSchedulers.io_main());
                         }
                         if (returnState.resCode==RETURN_TOKENERR){
-                            return Observable.just(RETURN_TROKENERROR);
+                            return Observable.just(RETURN_TROKENERROR).compose(RxSchedulers.io_main());
                         }
                         if (returnState.resCode==RETURN_OK && ToosUtils.isStringEmpty(returnState.resData)){
-                            return Observable.just(RETURN_NULL);
+                            return Observable.just(RETURN_NULL).compose(RxSchedulers.io_main());
                         }else{
-                            return Observable.just(returnState.resData);
+                            return Observable.just(returnState.resData).compose(RxSchedulers.io_main());
                         }
                     }
 
-                })
-                .compose(RxSchedulers.io_main());
+                }).compose(RxSchedulers.io_main());
+
     }
 }

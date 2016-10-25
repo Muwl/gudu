@@ -10,6 +10,9 @@ import butterknife.ButterKnife;
 import vip.gudugudu.gudu.R;
 import vip.gudugudu.gudu.base.util.SpUtil;
 import vip.gudugudu.gudu.base.util.TUtil;
+import vip.gudugudu.gudu.view.dialog.ProDialog;
+
+import static android.R.attr.id;
 
 /**
  * Created by Administrator on 2016/4/5.
@@ -19,7 +22,7 @@ public abstract class BaseActivity<T extends BasePresenter, E extends BaseModel>
     public E mModel;
     public Context mContext;
 
-    private ImageView ivShadow;
+    private ProDialog proDialog;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -64,5 +67,20 @@ public abstract class BaseActivity<T extends BasePresenter, E extends BaseModel>
     public abstract int getLayoutId();
 
     public abstract void initView();
+
+    public void showDialog(){
+        if (proDialog==null){
+            proDialog=new ProDialog(this);
+        }
+        if (proDialog.isShowing()==false){
+            proDialog.show();
+        }
+    }
+
+    public void dissDialog(){
+        if (proDialog!=null && proDialog.isShowing()){
+            proDialog.dismiss();
+        }
+    }
 
 }
