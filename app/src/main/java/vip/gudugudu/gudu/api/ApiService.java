@@ -15,5 +15,8 @@ public interface ApiService {
     @POST("{path}")
     Observable<ReturnState> getNoTokenData(@Path("path") String path, @Query("reqData") String reqData);
 
+    @POST("{path}")
+    Observable<String> getNoTokenData1(@Path("path") String path, @Query("reqData") String reqData);
+
 
 }

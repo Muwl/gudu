@@ -37,11 +37,11 @@ public class Api {
     public Retrofit retrofit;
     public ApiService service;
 
-    Interceptor mInterceptor = (chain) -> chain.proceed(chain.request().newBuilder()
-//            .addHeader("X-LC-Id", X_LC_Id)
-//            .addHeader("X-LC-Key", X_LC_Key)
-            .addHeader("Content-Type", "application/json")
-            .build());
+//    Interceptor mInterceptor = (chain) -> chain.proceed(chain.request().newBuilder()
+////            .addHeader("X-LC-Id", X_LC_Id)
+////            .addHeader("X-LC-Key", X_LC_Key)
+//            .addHeader("Content-Type", "application/json")
+//            .build());
 
 
     //构造方法私有
@@ -55,14 +55,15 @@ public class Api {
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .readTimeout(7676, TimeUnit.MILLISECONDS)
                 .connectTimeout(7676, TimeUnit.MILLISECONDS)
-                .addInterceptor(mInterceptor)
-                .addInterceptor(interceptor)
-                .addNetworkInterceptor(new HttpCacheInterceptor())
+//                .addInterceptor(mInterceptor)
+//                .addInterceptor(interceptor)
+//                .addNetworkInterceptor(new HttpCacheInterceptor())
                 .cache(cache)
                 .build();
 
 
         Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ").serializeNulls().create();
+
 
         retrofit = new Retrofit.Builder()
                 .client(okHttpClient)

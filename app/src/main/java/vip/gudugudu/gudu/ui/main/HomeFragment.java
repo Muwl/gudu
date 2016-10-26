@@ -9,14 +9,21 @@ import android.view.View;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import butterknife.Bind;
+import rx.Observable;
 import vip.gudugudu.gudu.R;
 import vip.gudugudu.gudu.base.BaseActivity;
 import vip.gudugudu.gudu.base.BaseFragment;
+import vip.gudugudu.gudu.base.BaseListFragment;
 import vip.gudugudu.gudu.base.util.ToastUtil;
+import vip.gudugudu.gudu.base.util.helper.FragmentAdapter;
 import vip.gudugudu.gudu.data.entity.TableShowEntity;
+import vip.gudugudu.gudu.view.viewholder.ArticleItemVH;
+
+import static android.R.id.tabs;
 
 public class HomeFragment extends BaseFragment<HomePresenter, HomeModel> implements HomeContract.View {
 
@@ -41,12 +48,10 @@ public class HomeFragment extends BaseFragment<HomePresenter, HomeModel> impleme
         Log.e("-----",new Gson().toJson(mtabs));
         ((BaseActivity)getActivity()).dissDialog();
         List<Fragment> fragments = new ArrayList<>();
-
-        ToastUtil.show("请求成功");
-//        Observable.from(mtabs).subscribe(tab -> fragments.add(BaseListFragment.newInstance(ArticleItemVH.class, tab.type)));
-//        fhomeViewpager.setAdapter(new FragmentAdapter(getFragmentManager(), fragments, Arrays.asList(mTabs)));
-//        tabs.setupWithViewPager(viewpager);
-//        tabs.setTabsFromPagerAdapter(viewpager.getAdapter());
+        Observable.from(mtabs).subscribe(tab -> fragments.add(BaseListFragment.newInstance(ArticleItemVH.class, tab.PinYin)));
+        fhomeViewpager.setAdapter(new FragmentAdapter(((BaseActivity)getActivity()).getSupportFragmentManager(), fragments, mtabs));
+        fhomeTablayout.setupWithViewPager(fhomeViewpager);
+        fhomeTablayout.setTabsFromPagerAdapter(fhomeViewpager.getAdapter());
     }
 
     @Override

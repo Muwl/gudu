@@ -1,7 +1,12 @@
 package vip.gudugudu.gudu.ui.main;
 
+import android.util.Log;
+
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +34,7 @@ public class HomeModel implements HomeContract.Model{
 
     @Override
     public void getTabs() {
-        ApiUtil.getStringDataNoToken("GetAllClassify","").subscribe(new Action1<String>() {
+        ApiUtil.getStringDataNoToken(ApiUtil.GETALLCLASSIFY,"").subscribe(new Action1<String>() {
             @Override
             public void call(String s) {
                 if (ToosUtils.isStringEmpty(s) || ApiUtil.RETURN_ERROR.equals(s)){

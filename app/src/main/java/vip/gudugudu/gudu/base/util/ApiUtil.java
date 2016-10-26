@@ -1,7 +1,10 @@
 package vip.gudugudu.gudu.base.util;
 
 import android.text.TextUtils;
+import android.util.Log;
 
+
+import com.google.gson.Gson;
 
 import java.util.Arrays;
 import java.util.List;
@@ -39,6 +42,8 @@ public class ApiUtil {
 
 
     public static final String LOGIN = "login";// 登录方法
+    public static final String GETALLCLASSIFY = "GetAllClassify";// 获取首页表头的分类
+    public static final String GETALBUMSLIST = "GetAlbumsList";// 获取首页分类下面的列表
 
 
     public static  Observable<String> getStringDataNoToken(String path,String upData) {
@@ -47,6 +52,7 @@ public class ApiUtil {
                 .flatMap(new Func1<ReturnState, Observable<String>>() {
                     @Override
                     public Observable<String> call(ReturnState returnState) {
+                        Log.e("----------------api","----------------");
                         if (returnState==null){
                             return  Observable.just(RETURN_ERROR).compose(RxSchedulers.io_main());
                         }
@@ -64,6 +70,14 @@ public class ApiUtil {
                     }
 
                 }).compose(RxSchedulers.io_main());
+
+    }
+
+
+    public static  Observable<String> getStringDataNoToken1(String path,String upData) {
+        return Api.getInstance().service
+                .getNoTokenData1(path, upData)
+                .compose(RxSchedulers.io_main());
 
     }
 }

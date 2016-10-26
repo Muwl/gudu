@@ -7,7 +7,7 @@
     android:paddingRight="10dp"
     android:paddingTop="15dp"
     android:paddingBottom="15dp"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
 
     <LinearLayout
@@ -39,6 +39,7 @@
         android:id="@+id/fhome_item_image"
         android:layout_width="117dp"
         android:layout_marginLeft="13dp"
+        android:scaleType="centerCrop"
         android:layout_height="77dp" />
 
 

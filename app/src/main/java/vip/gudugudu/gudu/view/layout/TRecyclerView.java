@@ -240,6 +240,7 @@ public class TRecyclerView<T extends Repository> extends LinearLayout {
                         }, new Action1<Throwable>() {
                             @Override
                             public void call(Throwable e) {
+                                Log.e("----------------失败","--------失败"+e.getMessage());
                                 e.printStackTrace();
                                 setEmpty();
                             }
