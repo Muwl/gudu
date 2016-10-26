@@ -44,6 +44,7 @@ public class ApiUtil {
     public static final String LOGIN = "login";// 登录方法
     public static final String GETALLCLASSIFY = "GetAllClassify";// 获取首页表头的分类
     public static final String GETALBUMSLIST = "GetAlbumsList";// 获取首页分类下面的列表
+    public static final String GETALBUMSDETIAL = "GetAlbumsDetial";// 获取套图详情
 
 
     public static  Observable<String> getStringDataNoToken(String path,String upData) {

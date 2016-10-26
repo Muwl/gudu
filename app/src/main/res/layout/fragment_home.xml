@@ -21,7 +21,9 @@
            app:tabMode="scrollable"
            android:background="@color/head_bg"
            android:layout_width="match_parent"
-           app:tabTextColor="@color/white"
+           app:tabSelectedTextColor="@color/white"
+           app:tabIndicatorColor="@color/white"
+           app:tabTextAppearance="@style/MyTabLayoutTextAppearance"
            android:layout_height="match_parent"/>
 
    </LinearLayout>

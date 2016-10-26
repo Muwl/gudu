@@ -1,46 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:background="@color/white"
-    android:paddingLeft="10dp"
-    android:paddingRight="10dp"
-    android:paddingTop="15dp"
-    android:paddingBottom="15dp"
-    android:layout_height="wrap_content">
-
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
     <LinearLayout
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:orientation="vertical">
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:paddingBottom="10dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="10dp">
 
-        <TextView
-            android:id="@+id/fhome_item_title"
-            android:layout_width="match_parent"
-            android:textColor="@color/home_list_text"
-            android:textSize="@dimen/first_font"
-            android:text="wdadwad"
-            android:layout_height="wrap_content" />
 
-        <TextView
-            android:id="@+id/fhome_item_time"
-            android:layout_width="match_parent"
-            android:textColor="#999999"
-            android:layout_marginTop="4dp"
-            android:textSize="@dimen/second_font"
-            android:text="wdadwad"
-            android:layout_height="wrap_content" />
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/fhome_item_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="wdadwad"
+                android:textColor="@color/home_list_text"
+                android:textSize="@dimen/first_font" />
+
+            <TextView
+                android:id="@+id/fhome_item_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="wdadwad"
+                android:textColor="#999999"
+                android:textSize="@dimen/second_font" />
+        </LinearLayout>
+
+
+        <ImageView
+            android:id="@+id/fhome_item_image"
+            android:layout_width="117dp"
+            android:layout_height="77dp"
+            android:layout_marginLeft="13dp"
+            android:scaleType="centerCrop" />
+
+
     </LinearLayout>
 
-
     <ImageView
-        android:id="@+id/fhome_item_image"
-        android:layout_width="117dp"
-        android:layout_marginLeft="13dp"
-        android:scaleType="centerCrop"
-        android:layout_height="77dp" />
-
-
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@color/division"/>
 </LinearLayout>

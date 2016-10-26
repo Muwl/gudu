@@ -15,6 +15,8 @@ import vip.gudugudu.gudu.base.BaseViewHolder;
 import vip.gudugudu.gudu.base.util.ImageUtil;
 import vip.gudugudu.gudu.data.entity.AlbumsEntity;
 import vip.gudugudu.gudu.data.repository.AlbumsRepository;
+import vip.gudugudu.gudu.ui.albumdetail.AlbumDetailActivity;
+import vip.gudugudu.gudu.ui.main.MainActivity;
 
 /**
  * Created by baixiaokang on 16/4/23.
@@ -46,9 +48,9 @@ public class ArticleItemVH extends BaseViewHolder<AlbumsRepository> {
         fhomeItemTime.setText(mSubject.data.AddTime);
 //        tv_info.setText(mSubject.data.type);
 //        tv_time.setText(mSubject.data.createdAt);
-//        view.setOnClickListener((v) ->
-//                ActivityCompat.startActivity((Activity) mContext, new Intent(mContext, ArticleActivity.class).putExtra(C.HEAD_DATA, mSubject.data)
-//                        , ActivityOptionsCompat.makeSceneTransitionAnimation((Activity) mContext, image, ArticleActivity.TRANSLATE_VIEW).toBundle())
-//        );
+        view.setOnClickListener((v) ->
+                ActivityCompat.startActivity((Activity) mContext, new Intent(mContext, AlbumDetailActivity.class).putExtra("albumId", mSubject.data.AlbumId)
+                        , null)
+        );
     }
 }

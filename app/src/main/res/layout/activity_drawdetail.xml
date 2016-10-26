@@ -9,8 +9,6 @@
         android:id="@+id/drawdetail_title"
         layout="@layout/activity_title" />
 
-
-
     <RelativeLayout
         android:id="@+id/drawdetail_bom"
         android:layout_width="match_parent"
@@ -19,6 +17,7 @@
         android:background="#f4f5f6"
         android:gravity="center_vertical"
         android:orientation="horizontal"
+        android:visibility="gone"
         android:paddingLeft="10dp"
         android:paddingRight="10dp">
 
@@ -111,6 +110,7 @@
                 android:textSize="@dimen/second_font"
                 android:textColor="#666666"
                 android:gravity="center"
+                android:visibility="gone"
                 android:drawablePadding="5dp"
                 android:drawableLeft="@mipmap/atten"
                 android:layout_marginTop="8dp"
@@ -137,6 +137,7 @@
                 android:layout_height="wrap_content"
                 android:divider="@color/white"
                 android:scrollbars="none"
+                android:visibility="gone"
                 android:dividerHeight="0dp"
                 android:layout_marginTop="5dp"
                 />

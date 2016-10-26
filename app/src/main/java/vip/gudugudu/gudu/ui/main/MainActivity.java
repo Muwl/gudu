@@ -14,7 +14,7 @@ import vip.gudugudu.gudu.R;
 import vip.gudugudu.gudu.base.BaseActivity;
 
 public class MainActivity extends BaseActivity<MainPresenter, MainModel> implements MainContract.View {
-
+    public static final String TRANSLATE_VIEW = "share_img";
     @Bind(R.id.main_container)
     FrameLayout mainContainer;
     @Bind(R.id.mainbom_home)

@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <include
-        android:id="@+id/register_register"
+        android:id="@+id/register_title"
         layout="@layout/activity_title"/>
 
 
@@ -64,8 +64,6 @@
             android:layout_alignParentRight="true"
             android:background="@drawable/white_btn"
             android:gravity="center"
-            android:layout_marginTop="6dp"
-            android:layout_marginBottom="6dp"
             android:layout_marginRight="15dp"
             android:textColor="@color/head_bg"
             android:layout_centerVertical="true"
@@ -80,8 +78,9 @@
             android:layout_toLeftOf="@id/register_getcode"
             android:layout_marginRight="20dp"
             android:layout_height="wrap_content"
-            android:paddingTop="8dp"
-            android:paddingBottom="8dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            android:gravity="center_vertical"
             android:layout_centerVertical="true"
             android:hint="请输入手机验证码"
             android:background="@color/white"

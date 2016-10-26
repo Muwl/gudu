@@ -25,7 +25,7 @@
             android:textColor="@color/white"
             android:layout_marginTop="8dp"
             android:layout_below="@id/person_icon"
-            android:text="笑了的乐乐"
+            android:text="请登录"
             android:layout_centerHorizontal="true"
             android:textSize="@dimen/first_font"
             />

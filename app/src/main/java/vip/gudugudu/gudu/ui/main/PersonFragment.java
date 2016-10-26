@@ -1,11 +1,32 @@
 package vip.gudugudu.gudu.ui.main;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import vip.gudugudu.gudu.R;
 import vip.gudugudu.gudu.base.BaseFragment;
+import vip.gudugudu.gudu.ui.feedback.FeedBackActivity;
+import vip.gudugudu.gudu.ui.login.LoginActivity;
+import vip.gudugudu.gudu.ui.other.SettingActivity;
+import vip.gudugudu.gudu.view.widget.CircleImageView;
 
-public class PersonFragment extends BaseFragment<PersonPresenter,PersonModel> implements PersonContract.View{
+public class PersonFragment extends BaseFragment<PersonPresenter, PersonModel> implements PersonContract.View {
+
+    @Bind(R.id.person_icon)
+    CircleImageView personIcon;
+    @Bind(R.id.person_name)
+    TextView personName;
+    @Bind(R.id.person_setting)
+    TextView personSetting;
+    @Bind(R.id.person_feedback)
+    TextView personFeedback;
 
     @Override
     public int getLayoutId() {
@@ -15,5 +36,25 @@ public class PersonFragment extends BaseFragment<PersonPresenter,PersonModel> im
     @Override
     public void initView(View view) {
 
+    }
+
+
+
+    @OnClick({R.id.person_name, R.id.person_setting, R.id.person_feedback})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.person_name:
+                Intent intent=new Intent(getActivity(), LoginActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.person_setting:
+                Intent intent2=new Intent(getActivity(), SettingActivity.class);
+                startActivity(intent2);
+                break;
+            case R.id.person_feedback:
+                Intent intent3=new Intent(getActivity(), FeedBackActivity.class);
+                startActivity(intent3);
+                break;
+        }
     }
 }
