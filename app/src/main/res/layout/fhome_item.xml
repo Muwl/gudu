@@ -4,21 +4,32 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
         android:orientation="horizontal"
-        android:paddingBottom="10dp"
         android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:paddingTop="10dp">
+        android:paddingRight="10dp">
+
+        <ImageView
+            android:id="@+id/fhome_item_image"
+            android:layout_width="117dp"
+            android:layout_height="77dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:layout_marginBottom="15dp"
+            android:layout_marginTop="15dp"
+            android:scaleType="centerCrop" />
 
 
         <LinearLayout
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_toLeftOf="@id/fhome_item_image"
+            android:layout_alignTop="@id/fhome_item_image"
+            android:layout_marginBottom="10dp"
             android:orientation="vertical">
 
             <TextView
@@ -26,6 +37,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="wdadwad"
+                android:includeFontPadding="false"
                 android:textColor="@color/home_list_text"
                 android:textSize="@dimen/first_font" />
 
@@ -33,27 +45,19 @@
                 android:id="@+id/fhome_item_time"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="8dp"
                 android:text="wdadwad"
                 android:textColor="#999999"
-                android:textSize="@dimen/second_font" />
+                android:textSize="@dimen/four_font" />
         </LinearLayout>
 
 
-        <ImageView
-            android:id="@+id/fhome_item_image"
-            android:layout_width="117dp"
-            android:layout_height="77dp"
-            android:layout_marginLeft="13dp"
-            android:scaleType="centerCrop" />
-
-
-    </LinearLayout>
+    </RelativeLayout>
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="1px"
+        android:layout_marginRight="10dp"
         android:layout_marginLeft="10dp"
-        android:layout_marginBottom="10dp"
-        android:background="@color/division"/>
+        android:background="@color/division" />
 </LinearLayout>
