@@ -6,12 +6,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import vip.gudugudu.gudu.R;
 import vip.gudugudu.gudu.base.ViewHolder;
+import vip.gudugudu.gudu.base.util.DensityUtil;
 import vip.gudugudu.gudu.base.util.ImageUtil;
 import vip.gudugudu.gudu.data.entity.AlbumDetailEntity;
+
+import static android.R.attr.id;
 
 /**
  * 作者：Administrator on 2016/10/27 15:07
@@ -97,6 +101,7 @@ public class DrawDetailAdapter extends BaseAdapter {
                 holder3 = new ViewHolder3();
                 holder3.rectext = (TextView) convertView.findViewById(R.id.recitem_text);
                 holder3.div = (ImageView) convertView.findViewById(R.id.recitem_div);
+                holder3.lin = (LinearLayout) convertView.findViewById(R.id.recitem_lin);
                 convertView.setTag(R.id.tag, holder3);
             } else {
                 holder3 = (ViewHolder3) convertView.getTag(R.id.tag);
@@ -116,6 +121,13 @@ public class DrawDetailAdapter extends BaseAdapter {
                     context.startActivity(intent);
                 }
             });
+
+            if(position==entity.Pictures.size()+1){
+                holder3.lin.setPadding(0, DensityUtil.dip2px(context,23),0,0);
+            }else{
+                holder3.lin.setPadding(0,0,0,0);
+            }
+
             if (position==entity.Pictures.size() + entity.RecommentsAlbums.size()){
                 holder3.div.setVisibility(View.GONE);
             }else{
@@ -135,6 +147,7 @@ public class DrawDetailAdapter extends BaseAdapter {
 
     class ViewHolder3 {
         public TextView rectext;
+        public LinearLayout lin;
         public ImageView div;
     }
 
