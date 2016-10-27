@@ -1,11 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/recitem_text"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:textColor="#333333"
-    android:textSize="@dimen/second_font"
-    android:paddingTop="8dp"
-    android:paddingBottom="8dp"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <TextView
+        android:id="@+id/recitem_text"
+        android:layout_width="match_parent"
+        android:textColor="#333333"
+        android:textSize="@dimen/second_font"
+        android:background="#f4f5f6"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:paddingTop="7dp"
+        android:paddingBottom="7dp"
+        android:layout_height="wrap_content">
+    </TextView>
 
-</TextView>
+    <ImageView
+        android:id="@+id/recitem_div"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/division"/>
+</LinearLayout>
+
+
+

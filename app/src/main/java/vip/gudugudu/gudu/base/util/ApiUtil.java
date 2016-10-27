@@ -75,10 +75,5 @@ public class ApiUtil {
     }
 
 
-    public static  Observable<String> getStringDataNoToken1(String path,String upData) {
-        return Api.getInstance().service
-                .getNoTokenData1(path, upData)
-                .compose(RxSchedulers.io_main());
 
-    }
 }

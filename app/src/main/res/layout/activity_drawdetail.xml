@@ -15,9 +15,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="#f4f5f6"
+        android:visibility="gone"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:visibility="gone"
         android:paddingLeft="10dp"
         android:paddingRight="10dp">
 
@@ -65,86 +65,97 @@
         android:id="@+id/drawdetail_bomlin"
         android:layout_width="match_parent"
         android:layout_height="1px"
+        android:visibility="gone"
         android:layout_above="@id/drawdetail_bom"
         android:background="@color/division" />
 
-
-    <ScrollView
+    <ListView
+        android:id="@+id/drawdetail_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/drawdetail_bomlin"
+        android:scrollbars="none"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         android:layout_below="@id/drawdetail_title"
-        android:fillViewport="true"
-        android:scrollbars="none">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:background="@color/white"
-            android:padding="10dp">
-
-            <TextView
-                android:id="@+id/drawdetail_tip"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="#333333"
-                android:layout_marginTop="8dp"
-                android:textSize="@dimen/first_font"
-                android:text="街拍：学院路的美女身材！"/>
-
-            <vip.gudugudu.gudu.view.widget.MyListView
-                android:id="@+id/drawdetail_drawlist"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:divider="@color/white"
-                android:scrollbars="none"
-                android:dividerHeight="6dp"
-                android:layout_marginTop="3dp"
-                />
-
-            <TextView
-                android:id="@+id/drawdetail_attennum"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/second_font"
-                android:textColor="#666666"
-                android:gravity="center"
-                android:visibility="gone"
-                android:drawablePadding="5dp"
-                android:drawableLeft="@mipmap/atten"
-                android:layout_marginTop="8dp"
-                android:text="12"
-                />
-
-            <vip.gudugudu.gudu.view.widget.MyListView
-                android:id="@+id/drawdetail_reclist"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:divider="@color/division"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:background="#f4f5f6"
-                android:scrollbars="none"
-                android:dividerHeight="1px"
-                android:layout_marginTop="10dp"
-                />
+        android:divider="@color/transparent"
+        android:dividerHeight="0dp"
+        ></ListView>
 
 
-            <vip.gudugudu.gudu.view.widget.MyListView
-                android:id="@+id/drawdetail_discusslist"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:divider="@color/white"
-                android:scrollbars="none"
-                android:visibility="gone"
-                android:dividerHeight="0dp"
-                android:layout_marginTop="5dp"
-                />
+    <!--<ScrollView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_below="@id/drawdetail_title"-->
+        <!--android:fillViewport="true"-->
+        <!--android:scrollbars="none">-->
 
-        </LinearLayout>
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:orientation="vertical"-->
+            <!--android:background="@color/white"-->
+            <!--android:padding="10dp">-->
 
-    </ScrollView>
+            <!--<TextView-->
+                <!--android:id="@+id/drawdetail_tip"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:textColor="#333333"-->
+                <!--android:layout_marginTop="8dp"-->
+                <!--android:textSize="@dimen/second_font"-->
+                <!--android:text=""/>-->
+
+            <!--<vip.gudugudu.gudu.view.widget.MyListView-->
+                <!--android:id="@+id/drawdetail_drawlist"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:divider="@color/white"-->
+                <!--android:dividerHeight="6dp"-->
+                <!--android:layout_marginTop="3dp"-->
+                <!--/>-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/drawdetail_attennum"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:textSize="@dimen/second_font"-->
+                <!--android:textColor="#666666"-->
+                <!--android:gravity="center"-->
+                <!--android:visibility="gone"-->
+                <!--android:drawablePadding="5dp"-->
+                <!--android:drawableLeft="@mipmap/atten"-->
+                <!--android:layout_marginTop="8dp"-->
+                <!--android:text="12"-->
+                <!--/>-->
+
+            <!--<vip.gudugudu.gudu.view.widget.MyListView-->
+                <!--android:id="@+id/drawdetail_reclist"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:divider="@color/division"-->
+                <!--android:paddingLeft="10dp"-->
+                <!--android:paddingRight="10dp"-->
+                <!--android:background="#f4f5f6"-->
+                <!--android:scrollbars="none"-->
+                <!--android:dividerHeight="1px"-->
+                <!--android:layout_marginTop="10dp"-->
+                <!--/>-->
+
+
+            <!--<vip.gudugudu.gudu.view.widget.MyListView-->
+                <!--android:id="@+id/drawdetail_discusslist"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:divider="@color/white"-->
+                <!--android:scrollbars="none"-->
+                <!--android:visibility="gone"-->
+                <!--android:dividerHeight="0dp"-->
+                <!--android:layout_marginTop="5dp"-->
+                <!--/>-->
+
+        <!--</LinearLayout>-->
+
+    <!--</ScrollView>-->
 
 
 </RelativeLayout>

@@ -33,6 +33,7 @@ public class ImageUtil {
         Glide.with(v.getContext())
                 .load(getFuckUrl(url))
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .placeholder(R.mipmap.loding)
                 .into(v);
 
     }

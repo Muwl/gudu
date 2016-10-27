@@ -1,6 +1,10 @@
 package vip.gudugudu.gudu.api;
 
 
+import okhttp3.RequestBody;
+import retrofit2.http.Body;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
@@ -12,11 +16,11 @@ import vip.gudugudu.gudu.data.entity.ReturnState;
  */
 public interface ApiService {
 
+    @FormUrlEncoded
     @POST("{path}")
-    Observable<ReturnState> getNoTokenData(@Path("path") String path, @Query("reqData") String reqData);
+    Observable<ReturnState> getNoTokenData(@Path("path") String path, @Field("reqData") String reqData);
+//    Observable<ReturnState> getNoTokenData(@Path("path") String path, @Query("reqData") String reqData);
 
-    @POST("{path}")
-    Observable<String> getNoTokenData1(@Path("path") String path, @Query("reqData") String reqData);
 
 
 }

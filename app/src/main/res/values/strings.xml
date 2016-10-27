@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">咕嘟咕嘟</string>
+    <item name="tag" type="id"/>
 </resources>

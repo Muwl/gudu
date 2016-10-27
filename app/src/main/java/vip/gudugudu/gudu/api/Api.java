@@ -19,8 +19,8 @@ import okhttp3.Response;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
-import retrofit2.converter.gson.GsonConverterFactory;
 import vip.gudugudu.gudu.App;
+import vip.gudugudu.gudu.base.GsonConverterFactory;
 import vip.gudugudu.gudu.base.util.NetWorkUtil;
 
 /**
