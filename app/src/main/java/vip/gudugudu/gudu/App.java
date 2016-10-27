@@ -18,6 +18,8 @@ public class App extends Application {
         super.onCreate();
         mApp = this;
         SpUtil.init(this);
+
+
     }
 
     public static Context getAppContext() {
