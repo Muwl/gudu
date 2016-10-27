@@ -97,12 +97,6 @@ public class AlbumDetailActivity extends BaseActivity<AlbumDetailPresenter, Albu
         dissDialog();
         DrawDetailAdapter adapter=new DrawDetailAdapter(this,detailEntity);
         drawdetailList.setAdapter(adapter);
-//        drawdetailTip.setText(detailEntity.AlbumTitle);
-//        DarwDetailImageAdapter imageAdapter=new DarwDetailImageAdapter(this,detailEntity.Pictures);
-//        drawdetailDrawlist.setAdapter(imageAdapter);
-//        DarwDetailRecAdapter recAdapter=new DarwDetailRecAdapter(this,detailEntity.RecommentsAlbums);
-//        drawdetailReclist.setAdapter(recAdapter);
-//        setListViewHeightBasedOnChildren(drawdetailDrawlist);
     }
 
     @Override

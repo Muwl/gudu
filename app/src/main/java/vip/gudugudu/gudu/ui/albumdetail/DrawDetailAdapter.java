@@ -101,7 +101,7 @@ public class DrawDetailAdapter extends BaseAdapter {
                 holder3 = new ViewHolder3();
                 holder3.rectext = (TextView) convertView.findViewById(R.id.recitem_text);
                 holder3.div = (ImageView) convertView.findViewById(R.id.recitem_div);
-                holder3.lin = (LinearLayout) convertView.findViewById(R.id.recitem_lin);
+                holder3.tip = (TextView) convertView.findViewById(R.id.recitem_tip);
                 convertView.setTag(R.id.tag, holder3);
             } else {
                 holder3 = (ViewHolder3) convertView.getTag(R.id.tag);
@@ -123,9 +123,9 @@ public class DrawDetailAdapter extends BaseAdapter {
             });
 
             if(position==entity.Pictures.size()+1){
-                holder3.lin.setPadding(0, DensityUtil.dip2px(context,23),0,0);
+                holder3.tip.setVisibility(View.VISIBLE);
             }else{
-                holder3.lin.setPadding(0,0,0,0);
+                holder3.tip.setVisibility(View.GONE);
             }
 
             if (position==entity.Pictures.size() + entity.RecommentsAlbums.size()){
@@ -147,7 +147,7 @@ public class DrawDetailAdapter extends BaseAdapter {
 
     class ViewHolder3 {
         public TextView rectext;
-        public LinearLayout lin;
+        public TextView tip;
         public ImageView div;
     }
 
