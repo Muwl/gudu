@@ -20,6 +20,7 @@ import vip.gudugudu.gudu.base.util.helper.RxSchedulers;
 import vip.gudugudu.gudu.data.Data;
 import vip.gudugudu.gudu.data.Repository;
 import vip.gudugudu.gudu.data.entity.AlbumsEntity;
+import vip.gudugudu.gudu.data.entity.ReturnCallEntity;
 import vip.gudugudu.gudu.data.entity.TableShowEntity;
 
 /**
@@ -53,11 +54,10 @@ public class AlbumsRepository extends Repository<AlbumsEntity> {
 //        return Observable.just(new Data<>());
 
         return ApiUtil.getStringDataNoToken(ApiUtil.GETALBUMSLIST,jsonObject.toString())
-                .flatMap(new Func1<String, Observable<Data<AlbumsEntity>>>() {
+                .flatMap(new Func1<ReturnCallEntity, Observable<Data<AlbumsEntity>>>() {
                     @Override
-                    public Observable<Data<AlbumsEntity>> call(String s) {
-                        Log.e("----------------cccc",s);
-                        List<AlbumsEntity> tabs=new Gson().fromJson(s,new TypeToken<List<AlbumsEntity>>() {
+                    public Observable<Data<AlbumsEntity>> call(ReturnCallEntity callEntity) {
+                        List<AlbumsEntity> tabs=new Gson().fromJson(callEntity.result,new TypeToken<List<AlbumsEntity>>() {
                         }.getType());
                         Data<AlbumsEntity> data=new Data<AlbumsEntity>();
                         data.results= (ArrayList<AlbumsEntity>) tabs;

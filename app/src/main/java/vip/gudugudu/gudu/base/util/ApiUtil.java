@@ -16,6 +16,7 @@ import vip.gudugudu.gudu.api.Api;
 import vip.gudugudu.gudu.base.BaseEntity;
 import vip.gudugudu.gudu.base.util.helper.RxSchedulers;
 import vip.gudugudu.gudu.data.Pointer;
+import vip.gudugudu.gudu.data.entity.ReturnCallEntity;
 import vip.gudugudu.gudu.data.entity.ReturnState;
 
 import static android.R.attr.name;
@@ -33,6 +34,7 @@ public class ApiUtil {
     public static final int RETURN_TOKENERR = 202;
 
     public static final String RETURN_NULL = "123456789-null";
+    public static final String RETURN_SUC = "123456789-ok";
     public static final String RETURN_ERROR = "123456789-error";
     public static final String RETURN_TROKENERROR = "123456789-tokenerror";
 
@@ -45,28 +47,29 @@ public class ApiUtil {
     public static final String GETALLCLASSIFY = "GetAllClassify";// 获取首页表头的分类
     public static final String GETALBUMSLIST = "GetAlbumsList";// 获取首页分类下面的列表
     public static final String GETALBUMSDETIAL = "GetAlbumsDetial";// 获取套图详情
+    public static final String REGISTER = "Register";// 获取套图详情
 
 
-    public static  Observable<String> getStringDataNoToken(String path,String upData) {
+    public static  Observable<ReturnCallEntity> getStringDataNoToken(String path, String upData) {
        return Api.getInstance().service
                 .getNoTokenData(path, upData)
-                .flatMap(new Func1<ReturnState, Observable<String>>() {
+                .flatMap(new Func1<ReturnState, Observable<ReturnCallEntity>>() {
                     @Override
-                    public Observable<String> call(ReturnState returnState) {
+                    public Observable<ReturnCallEntity> call(ReturnState returnState) {
                         Log.e("----------------api","----------------");
                         if (returnState==null){
-                            return  Observable.just(RETURN_ERROR).compose(RxSchedulers.io_main());
+                            return  Observable.just(new ReturnCallEntity(RETURN_ERROR,"请求失败")).compose(RxSchedulers.io_main());
                         }
                         if (returnState.resCode==RETURN_ERR){
-                            return Observable.just(RETURN_ERROR).compose(RxSchedulers.io_main());
+                            return Observable.just(new ReturnCallEntity(RETURN_ERROR,returnState.resMsg)).compose(RxSchedulers.io_main());
                         }
                         if (returnState.resCode==RETURN_TOKENERR){
-                            return Observable.just(RETURN_TROKENERROR).compose(RxSchedulers.io_main());
+                            return Observable.just(new ReturnCallEntity(RETURN_TROKENERROR,returnState.resMsg)).compose(RxSchedulers.io_main());
                         }
                         if (returnState.resCode==RETURN_OK && ToosUtils.isStringEmpty(returnState.resData)){
-                            return Observable.just(RETURN_NULL).compose(RxSchedulers.io_main());
+                            return Observable.just(new ReturnCallEntity(RETURN_NULL,"")).compose(RxSchedulers.io_main());
                         }else{
-                            return Observable.just(returnState.resData).compose(RxSchedulers.io_main());
+                            return Observable.just(new ReturnCallEntity(RETURN_SUC,returnState.resData)).compose(RxSchedulers.io_main());
                         }
                     }
 

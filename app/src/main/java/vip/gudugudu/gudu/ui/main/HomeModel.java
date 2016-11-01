@@ -16,6 +16,7 @@ import rx.functions.Action1;
 import vip.gudugudu.gudu.base.util.ApiUtil;
 import vip.gudugudu.gudu.base.util.ToosUtils;
 import vip.gudugudu.gudu.data.ResponseListener;
+import vip.gudugudu.gudu.data.entity.ReturnCallEntity;
 import vip.gudugudu.gudu.data.entity.TableShowEntity;
 
 import static android.icu.lang.UCharacter.GraphemeClusterBreak.L;
@@ -34,14 +35,14 @@ public class HomeModel implements HomeContract.Model{
 
     @Override
     public void getTabs() {
-        ApiUtil.getStringDataNoToken(ApiUtil.GETALLCLASSIFY,"").subscribe(new Action1<String>() {
+        ApiUtil.getStringDataNoToken(ApiUtil.GETALLCLASSIFY,"").subscribe(new Action1<ReturnCallEntity>() {
             @Override
-            public void call(String s) {
-                if (ToosUtils.isStringEmpty(s) || ApiUtil.RETURN_ERROR.equals(s)){
-                    tableListLister.onError("请求失败");
+            public void call(ReturnCallEntity callEntity) {
+                if (ToosUtils.isStringEmpty(callEntity.state) || ApiUtil.RETURN_ERROR.equals(callEntity.state)){
+                    tableListLister.onError(callEntity.result);
                 }else{
                     try{
-                        List<TableShowEntity> tabs=new Gson().fromJson(s,new TypeToken<List<TableShowEntity>>() {
+                        List<TableShowEntity> tabs=new Gson().fromJson(callEntity.result,new TypeToken<List<TableShowEntity>>() {
                         }.getType());
                         tableListLister.onSucess(tabs);
                     }catch (Exception e){

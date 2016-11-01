@@ -21,6 +21,8 @@ import vip.gudugudu.gudu.ui.register.RegisterActivity;
  */
 
 public class LoginActivity extends BaseActivity<LoginPresenter, LoginModel> implements LoginContract.View {
+
+    public static final int REGISTER_RES=1005;
     @Bind(R.id.title_back)
     ImageView titleBack;
     @Bind(R.id.title_title)
@@ -65,8 +67,18 @@ public class LoginActivity extends BaseActivity<LoginPresenter, LoginModel> impl
                 break;
             case R.id.login_register:
                 Intent intent3=new Intent(LoginActivity.this, RegisterActivity.class);
-                startActivity(intent3);
+                startActivityForResult(intent3,REGISTER_RES);
                 break;
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode!=RESULT_OK){
+            return;
+        }
+        if (requestCode==REGISTER_RES){
+            finish();
         }
     }
 }

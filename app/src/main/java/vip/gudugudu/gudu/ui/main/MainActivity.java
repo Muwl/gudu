@@ -10,6 +10,7 @@ import android.widget.TextView;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import cn.smssdk.SMSSDK;
 import vip.gudugudu.gudu.R;
 import vip.gudugudu.gudu.base.BaseActivity;
 
@@ -30,6 +31,9 @@ public class MainActivity extends BaseActivity<MainPresenter, MainModel> impleme
 
     private int currentId = R.id.mainbom_home;// 当前选中id,默认是主页
 
+
+
+
     @Override
     public int getLayoutId() {
         return R.layout.activity_main;
@@ -39,6 +43,8 @@ public class MainActivity extends BaseActivity<MainPresenter, MainModel> impleme
     public void initView() {
         mainbomHome.setSelected(true);
         changeFragment(currentId);
+        SMSSDK.initSDK(this, "18948bdd82b9d", "8087330b2a38b857b9935f476c6033a4");
+
     }
 
 

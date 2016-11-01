@@ -12,6 +12,7 @@ import vip.gudugudu.gudu.base.util.ApiUtil;
 import vip.gudugudu.gudu.base.util.ToosUtils;
 import vip.gudugudu.gudu.data.ResponseListener;
 import vip.gudugudu.gudu.data.entity.AlbumDetailEntity;
+import vip.gudugudu.gudu.data.entity.ReturnCallEntity;
 
 /**
  * Created by Administrator on 2016/10/26.
@@ -33,15 +34,14 @@ public class AlbumDetailModel implements AlbumDetailContract.Model {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        ApiUtil.getStringDataNoToken(ApiUtil.GETALBUMSDETIAL,jsonObject.toString()).subscribe(new Action1<String>() {
+        ApiUtil.getStringDataNoToken(ApiUtil.GETALBUMSDETIAL,jsonObject.toString()).subscribe(new Action1<ReturnCallEntity>() {
             @Override
-            public void call(String s) {
-                Log.e("-------------",s);
-                if (ToosUtils.isStringEmpty(s) || ApiUtil.RETURN_ERROR.equals(s)){
-                    getDetailLister.onError("请求失败");
+            public void call(ReturnCallEntity callEntity) {
+                if (ToosUtils.isStringEmpty(callEntity.state) || ApiUtil.RETURN_ERROR.equals(callEntity.state)){
+                    getDetailLister.onError(callEntity.result);
                 }else{
                     try{
-                        AlbumDetailEntity detailEntity=new Gson().fromJson(s,AlbumDetailEntity.class);
+                        AlbumDetailEntity detailEntity=new Gson().fromJson(callEntity.result,AlbumDetailEntity.class);
                         getDetailLister.onSucess(detailEntity);
                     }catch (Exception e){
                         getDetailLister.onError("请求失败");
