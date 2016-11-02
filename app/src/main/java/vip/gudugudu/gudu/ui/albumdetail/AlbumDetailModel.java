@@ -58,5 +58,5 @@ public class AlbumDetailModel implements AlbumDetailContract.Model {
         });
     }
 
-    
+
 }
