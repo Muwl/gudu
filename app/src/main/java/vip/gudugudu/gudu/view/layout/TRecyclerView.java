@@ -27,7 +27,6 @@ import vip.gudugudu.gudu.C;
 import vip.gudugudu.gudu.R;
 import vip.gudugudu.gudu.base.BaseViewHolder;
 import vip.gudugudu.gudu.base.RxManager;
-import vip.gudugudu.gudu.base.util.LogUtil;
 import vip.gudugudu.gudu.data.Data;
 import vip.gudugudu.gudu.data.Repository;
 import vip.gudugudu.gudu.view.viewholder.CommFooterVH;
@@ -336,7 +335,6 @@ public class TRecyclerView<T extends Repository> extends LinearLayout {
                                                         : viewtype, parent,
                                                 false)));
             } catch (Exception e) {
-                LogUtil.d("ViewHolderException", "onCreateViewHolder十有八九是xml写错了,哈哈");
                 e.printStackTrace();
                 return null;
             }

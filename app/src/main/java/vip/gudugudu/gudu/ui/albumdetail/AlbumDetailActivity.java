@@ -29,6 +29,9 @@ import vip.gudugudu.gudu.view.widget.MyListView;
  */
 
 public class AlbumDetailActivity extends BaseActivity<AlbumDetailPresenter, AlbumDetailModel> implements AlbumDetailContract.View {
+
+    public static final int COLLECT_FLAG=1009;
+
     @Bind(R.id.title_back)
     ImageView titleBack;
     @Bind(R.id.title_send)
@@ -59,8 +62,19 @@ public class AlbumDetailActivity extends BaseActivity<AlbumDetailPresenter, Albu
 //    MyListView drawdetailReclist;
 //    @Bind(R.id.drawdetail_discusslist)
 //    MyListView drawdetailDiscusslist;
-
     private int albumId;
+
+    private Handler handler=new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what){
+                case COLLECT_FLAG:
+
+                    break;
+            }
+        }
+    };
+
 
     @Override
     public int getLayoutId() {
@@ -88,6 +102,7 @@ public class AlbumDetailActivity extends BaseActivity<AlbumDetailPresenter, Albu
             case R.id.drawdetail_share:
                 break;
             case R.id.drawdetail_collect:
+
                 break;
         }
     }
@@ -95,7 +110,7 @@ public class AlbumDetailActivity extends BaseActivity<AlbumDetailPresenter, Albu
     @Override
     public void getDetailView(AlbumDetailEntity detailEntity) {
         dissDialog();
-        DrawDetailAdapter adapter=new DrawDetailAdapter(this,detailEntity);
+        DrawDetailAdapter adapter=new DrawDetailAdapter(this,detailEntity,handler);
         drawdetailList.setAdapter(adapter);
     }
 

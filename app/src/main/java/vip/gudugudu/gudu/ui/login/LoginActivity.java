@@ -13,6 +13,10 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import vip.gudugudu.gudu.R;
 import vip.gudugudu.gudu.base.BaseActivity;
+import vip.gudugudu.gudu.base.util.SpUtil;
+import vip.gudugudu.gudu.base.util.ToastUtil;
+import vip.gudugudu.gudu.base.util.ToosUtils;
+import vip.gudugudu.gudu.data.entity.RegisterEntity;
 import vip.gudugudu.gudu.ui.forget.ForgetActiyity;
 import vip.gudugudu.gudu.ui.register.RegisterActivity;
 
@@ -63,13 +67,42 @@ public class LoginActivity extends BaseActivity<LoginPresenter, LoginModel> impl
 
                 break;
             case R.id.login_login:
-
+                if (checkInput()){
+                    showDialog();
+                    mPresenter.login(ToosUtils.getTextContent(loginName),ToosUtils.getTextContent(loginPwd));
+                }
                 break;
             case R.id.login_register:
                 Intent intent3=new Intent(LoginActivity.this, RegisterActivity.class);
                 startActivityForResult(intent3,REGISTER_RES);
                 break;
         }
+    }
+
+    /**
+     * 注册输入
+     *
+     * @return
+     */
+    private boolean checkInput() {
+        if (ToosUtils.isTextEmpty(loginName)) {
+            ToastUtil.show("手机号不能为空！");
+            return false;
+        }
+        if (!ToosUtils.MatchPhone(ToosUtils.getTextContent(loginName))) {
+            ToastUtil.show( "输入的手机号格式错误！");
+            return false;
+        }
+        if (ToosUtils.isTextEmpty(loginPwd)) {
+            ToastUtil.show( "密码不能为空！");
+            return false;
+        }
+        if (!ToosUtils.checkPwd(ToosUtils.getTextContent(loginPwd))) {
+            ToastUtil.show( "密码不能少于6位！");
+            return false;
+        }
+        return true;
+
     }
 
     @Override
@@ -80,5 +113,18 @@ public class LoginActivity extends BaseActivity<LoginPresenter, LoginModel> impl
         if (requestCode==REGISTER_RES){
             finish();
         }
+    }
+
+    @Override
+    public void getLoginView(RegisterEntity registerEntity) {
+        dissDialog();
+        SpUtil.saveUser(registerEntity);
+        finish();
+    }
+
+    @Override
+    public void getLoginrError(String s) {
+        ToastUtil.show(s);
+        dissDialog();
     }
 }

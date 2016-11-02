@@ -13,7 +13,6 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
 import rx.subjects.PublishSubject;
 import rx.subjects.Subject;
-import vip.gudugudu.gudu.base.util.LogUtil;
 
 /**
  * 用RxJava实现的EventBus
@@ -63,7 +62,6 @@ public class RxBus {
         }
         Subject<T, T> subject;
         subjectList.add(subject = PublishSubject.create());
-        LogUtil.d("register", tag + "  size:" + subjectList.size());
         return subject;
     }
 
@@ -92,7 +90,6 @@ public class RxBus {
             subjects.remove((Subject<?, ?>) observable);
             if (isEmpty(subjects)) {
                 subjectMapper.remove(tag);
-                LogUtil.d("unregister", tag + "  size:" + subjects.size());
             }
         }
         return $();
@@ -109,12 +106,10 @@ public class RxBus {
      */
     @SuppressWarnings({"unchecked", "rawtypes"})
     public void post(@NonNull Object tag, @NonNull Object content) {
-        LogUtil.d("post", "eventName: " + tag);
         List<Subject> subjectList = subjectMapper.get(tag);
         if (!isEmpty(subjectList)) {
             for (Subject subject : subjectList) {
                 subject.onNext(content);
-                LogUtil.d("onEvent", "eventName: " + tag);
             }
         }
     }

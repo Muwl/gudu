@@ -16,14 +16,19 @@ public interface AlbumDetailContract {
 
     interface Model extends BaseModel{
         void getDetail(String albumid);
+        void getCollect(String albumid);
     }
     interface View extends BaseView{
         void getDetailView(AlbumDetailEntity detailEntity);
         void getTableError(String s);
 
+        void getCollectView(String s);
+        void getCollectError(String s);
     }
     abstract class Presenter extends BasePresenter<Model,View>{
         public abstract void getDetail(String albumid);
+
+        public abstract void getCollec(String albumid);
     }
 
 

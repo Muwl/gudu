@@ -43,11 +43,12 @@ public class ApiUtil {
             .asList(RETURN_STRINGS);
 
 
-    public static final String LOGIN = "login";// 登录方法
     public static final String GETALLCLASSIFY = "GetAllClassify";// 获取首页表头的分类
     public static final String GETALBUMSLIST = "GetAlbumsList";// 获取首页分类下面的列表
     public static final String GETALBUMSDETIAL = "GetAlbumsDetial";// 获取套图详情
     public static final String REGISTER = "Register";// 获取套图详情
+    public static final String LOGIN = "Login";// 登录方法
+    public static final String FEEDBACK = "FeedBack";// 反馈
 
 
     public static  Observable<ReturnCallEntity> getStringDataNoToken(String path, String upData) {
@@ -56,7 +57,7 @@ public class ApiUtil {
                 .flatMap(new Func1<ReturnState, Observable<ReturnCallEntity>>() {
                     @Override
                     public Observable<ReturnCallEntity> call(ReturnState returnState) {
-                        Log.e("----------------api","----------------");
+
                         if (returnState==null){
                             return  Observable.just(new ReturnCallEntity(RETURN_ERROR,"请求失败")).compose(RxSchedulers.io_main());
                         }
@@ -69,6 +70,35 @@ public class ApiUtil {
                         if (returnState.resCode==RETURN_OK && ToosUtils.isStringEmpty(returnState.resData)){
                             return Observable.just(new ReturnCallEntity(RETURN_NULL,"")).compose(RxSchedulers.io_main());
                         }else{
+                            Log.e("-----返回",returnState.resData);
+                            return Observable.just(new ReturnCallEntity(RETURN_SUC,returnState.resData)).compose(RxSchedulers.io_main());
+                        }
+                    }
+
+                }).compose(RxSchedulers.io_main());
+
+    }
+
+    public static  Observable<ReturnCallEntity> getStringDataToken(String path, String upData) {
+       return Api.getInstance().service
+                .getTokenData(path,SpUtil.getUserToken(), upData)
+                .flatMap(new Func1<ReturnState, Observable<ReturnCallEntity>>() {
+                    @Override
+                    public Observable<ReturnCallEntity> call(ReturnState returnState) {
+
+                        if (returnState==null){
+                            return  Observable.just(new ReturnCallEntity(RETURN_ERROR,"请求失败")).compose(RxSchedulers.io_main());
+                        }
+                        if (returnState.resCode==RETURN_ERR){
+                            return Observable.just(new ReturnCallEntity(RETURN_ERROR,returnState.resMsg)).compose(RxSchedulers.io_main());
+                        }
+                        if (returnState.resCode==RETURN_TOKENERR){
+                            return Observable.just(new ReturnCallEntity(RETURN_TROKENERROR,returnState.resMsg)).compose(RxSchedulers.io_main());
+                        }
+                        if (returnState.resCode==RETURN_OK && ToosUtils.isStringEmpty(returnState.resData)){
+                            return Observable.just(new ReturnCallEntity(RETURN_NULL,"")).compose(RxSchedulers.io_main());
+                        }else{
+                            Log.e("-----返回",returnState.resData);
                             return Observable.just(new ReturnCallEntity(RETURN_SUC,returnState.resData)).compose(RxSchedulers.io_main());
                         }
                     }

@@ -18,6 +18,8 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import vip.gudugudu.gudu.ui.login.LoginActivity;
+
 
 public class ToosUtils {
 
@@ -41,16 +43,9 @@ public class ToosUtils {
     }
 
     public static void goReLogin(Context context) {
-        // ToastUtils.displayShortToast(context, "验证失败，请重新登录");
-        // MyApplication.getInstance().logout(null);
-//        ShareDataTool.saveToken(context, "", "", "", "", "", "");
-//        if (MyApplication.getInstance().getCustomer() != null) {
-//            MyApplication.getInstance().setCustomer(null);
-//        }
-//        Intent intent = new Intent(context, LoginActivity.class);
-//        context.startActivity(intent);
-//        ((Activity) context).finish();
-
+        SpUtil.saveUser(null);
+        Intent intent = new Intent(context, LoginActivity.class);
+        context.startActivity(intent);
     }
 
 

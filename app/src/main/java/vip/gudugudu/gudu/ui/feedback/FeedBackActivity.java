@@ -11,6 +11,11 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import vip.gudugudu.gudu.R;
 import vip.gudugudu.gudu.base.BaseActivity;
+import vip.gudugudu.gudu.base.util.SpUtil;
+import vip.gudugudu.gudu.base.util.ToastUtil;
+import vip.gudugudu.gudu.base.util.ToosUtils;
+
+import static android.icu.lang.UCharacter.GraphemeClusterBreak.T;
 
 /**
  * Created by Administrator on 2016/10/26.
@@ -49,7 +54,49 @@ public class FeedBackActivity extends BaseActivity<FeedBackPresenter, FeedBackMo
                 finish();
                 break;
             case R.id.title_send:
+                if (checkInput()){
+                    showDialog();
+                    mPresenter.feedback(ToosUtils.getTextContent(feedbackContent),ToosUtils.getTextContent(feedbackPhone));
+                }
                 break;
         }
+    }
+
+    /**
+     * 注册输入
+     *
+     * @return
+     */
+    private boolean checkInput() {
+        if (ToosUtils.isTextEmpty(feedbackContent)) {
+            ToastUtil.show("回访内容不能为空！");
+            return false;
+        }
+        if (ToosUtils.isTextEmpty(feedbackPhone)) {
+            ToastUtil.show( "联系方式不能为空！");
+            return false;
+        }
+        return true;
+
+    }
+
+    @Override
+    public void getFeedBackView() {
+        dissDialog();
+        ToastUtil.show("反馈成功");
+        finish();
+    }
+
+    @Override
+    public void getFeedBackError(String s) {
+        dissDialog();
+        ToastUtil.show(s);
+    }
+
+    @Override
+    public void getFeedBackTokenError(String s) {
+        dissDialog();
+        ToastUtil.show(s);
+        ToosUtils.goReLogin(this);
     }
 }

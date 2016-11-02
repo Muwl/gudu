@@ -2,6 +2,7 @@ package vip.gudugudu.gudu.ui.albumdetail;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Handler;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -28,11 +29,12 @@ public class DrawDetailAdapter extends BaseAdapter {
     private int type0 = 1;
     private int type1 = 2;
     private int type2 = 3;
+    private Handler handler;
 
-
-    public DrawDetailAdapter(Context context, AlbumDetailEntity entity) {
+    public DrawDetailAdapter(Context context, AlbumDetailEntity entity, Handler handler) {
         this.entity = entity;
         this.context = context;
+        this.handler = handler;
     }
 
     @Override
@@ -102,6 +104,8 @@ public class DrawDetailAdapter extends BaseAdapter {
                 holder3.rectext = (TextView) convertView.findViewById(R.id.recitem_text);
                 holder3.div = (ImageView) convertView.findViewById(R.id.recitem_div);
                 holder3.tip = (TextView) convertView.findViewById(R.id.recitem_tip);
+                holder3.tiplin =  convertView.findViewById(R.id.recitem_tiplin);
+                holder3.collect = (ImageView) convertView.findViewById(R.id.recitem_collect);
                 convertView.setTag(R.id.tag, holder3);
             } else {
                 holder3 = (ViewHolder3) convertView.getTag(R.id.tag);
@@ -123,10 +127,16 @@ public class DrawDetailAdapter extends BaseAdapter {
             });
 
             if(position==entity.Pictures.size()+1){
-                holder3.tip.setVisibility(View.VISIBLE);
+                holder3.tiplin.setVisibility(View.VISIBLE);
             }else{
-                holder3.tip.setVisibility(View.GONE);
+                holder3.tiplin.setVisibility(View.GONE);
             }
+            holder3.collect.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    handler.sendEmptyMessage(AlbumDetailActivity.COLLECT_FLAG);
+                }
+            });
 
             if (position==entity.Pictures.size() + entity.RecommentsAlbums.size()){
                 holder3.div.setVisibility(View.GONE);
@@ -147,7 +157,9 @@ public class DrawDetailAdapter extends BaseAdapter {
 
     class ViewHolder3 {
         public TextView rectext;
+        public View tiplin;
         public TextView tip;
+        public ImageView collect;
         public ImageView div;
     }
 

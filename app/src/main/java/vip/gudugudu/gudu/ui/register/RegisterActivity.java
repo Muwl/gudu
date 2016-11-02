@@ -2,6 +2,7 @@ package vip.gudugudu.gudu.ui.register;
 
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.support.annotation.MainThread;
 import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
@@ -18,6 +19,7 @@ import cn.smssdk.EventHandler;
 import cn.smssdk.SMSSDK;
 import vip.gudugudu.gudu.R;
 import vip.gudugudu.gudu.base.BaseActivity;
+import vip.gudugudu.gudu.base.util.SpUtil;
 import vip.gudugudu.gudu.base.util.ToastUtil;
 import vip.gudugudu.gudu.base.util.ToosUtils;
 import vip.gudugudu.gudu.data.entity.RegisterEntity;
@@ -69,12 +71,34 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter, RegisterMo
                 }else if (event == SMSSDK.EVENT_GET_VERIFICATION_CODE){
                     dissDialog();
                     time.start();
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            ToastUtil.show("发送成功");
+                        }
+                    });
                     //获取验证码成功
                 }else if (event ==SMSSDK.EVENT_GET_SUPPORTED_COUNTRIES){
                     //返回支持发送验证码的国家列表
 
                 }
             }else{
+                if (event==SMSSDK.EVENT_SUBMIT_VERIFICATION_CODE){
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            ToastUtil.show("验证码错误，请重新输入");
+                        }
+                    });
+                }else if(event==SMSSDK.EVENT_GET_VERIFICATION_CODE){
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            ToastUtil.show("发送失败");
+                        }
+                    });
+                }
+
                 dissDialog();
                 ((Throwable)data).printStackTrace();
             }
@@ -96,6 +120,8 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter, RegisterMo
     @Override
     public void getRegisterView(RegisterEntity registerEntity) {
         dissDialog();
+        ToastUtil.show("注册成功");
+        SpUtil.saveUser(registerEntity);
         setResult(RESULT_OK);
         finish();
 
@@ -154,6 +180,7 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter, RegisterMo
             case R.id.register_register:
                 if (checkInput()){
                     showDialog();
+//                    mPresenter.register(ToosUtils.getTextContent(registerName),ToosUtils.getTextContent(registerPwd));
                     submitVerificationCode("86", ToosUtils.getTextContent(registerName), ToosUtils.getTextContent(registerCode));
                 }
 
@@ -178,7 +205,8 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter, RegisterMo
         if (ToosUtils.isTextEmpty(registerPwd)) {
             ToastUtil.show( "密码不能为空！");
             return false;
-        } if (ToosUtils.isTextEmpty(registerCode)) {
+        }
+      if (ToosUtils.isTextEmpty(registerCode)) {
             ToastUtil.show( "验证码不能为空！");
             return false;
         }
