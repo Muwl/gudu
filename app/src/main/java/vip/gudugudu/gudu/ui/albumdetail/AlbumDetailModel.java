@@ -20,9 +20,9 @@ import vip.gudugudu.gudu.data.entity.ReturnCallEntity;
 
 public class AlbumDetailModel implements AlbumDetailContract.Model {
 
-    private ResponseListener<AlbumDetailEntity> getDetailLister;
+    private ResponseListener<Object> getDetailLister;
 
-    public void setGetDetailLister(ResponseListener<AlbumDetailEntity> getDetailLister) {
+    public void setGetDetailLister(ResponseListener<Object> getDetailLister) {
         this.getDetailLister = getDetailLister;
     }
 
@@ -47,6 +47,35 @@ public class AlbumDetailModel implements AlbumDetailContract.Model {
                         getDetailLister.onError("请求失败");
                     }
 
+                }
+            }
+        }, new Action1<Throwable>() {
+            @Override
+            public void call(Throwable throwable) {
+                throwable.printStackTrace();
+                getDetailLister.onError("请求失败");
+            }
+        });
+    }
+
+    @Override
+    public void getCollect(String albumid) {
+        JSONObject jsonObject=new JSONObject();
+        try {
+            jsonObject.put("albumid",albumid);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        ApiUtil.getStringDataToken(ApiUtil.ADDCOLLECT,jsonObject.toString()).subscribe(new Action1<ReturnCallEntity>() {
+            @Override
+            public void call(ReturnCallEntity callEntity) {
+
+                if (ToosUtils.isStringEmpty(callEntity.state) || ApiUtil.RETURN_ERROR.equals(callEntity.state)){
+                    getDetailLister.onError(callEntity.result);
+                }else if(ApiUtil.RETURN_TROKENERROR.equals(callEntity.state)){
+                    getDetailLister.OnTokenError(callEntity.result);
+                }else{
+                    getDetailLister.onSucess("收藏成功");
                 }
             }
         }, new Action1<Throwable>() {

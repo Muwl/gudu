@@ -25,7 +25,7 @@ public class FeedBackPresenter extends FeedBackContract.Presenter implements Res
 
     @Override
     public void OnTokenError(String s) {
-        mView.getFeedBackError(s);
+        mView.getFeedBackTokenError(s);
     }
 
     @Override

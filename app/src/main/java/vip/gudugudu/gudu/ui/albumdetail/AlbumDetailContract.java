@@ -24,6 +24,7 @@ public interface AlbumDetailContract {
 
         void getCollectView(String s);
         void getCollectError(String s);
+        void getCollectTokenError(String s);
     }
     abstract class Presenter extends BasePresenter<Model,View>{
         public abstract void getDetail(String albumid);

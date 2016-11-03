@@ -49,6 +49,7 @@ public class ApiUtil {
     public static final String REGISTER = "Register";// 获取套图详情
     public static final String LOGIN = "Login";// 登录方法
     public static final String FEEDBACK = "FeedBack";// 反馈
+    public static final String ADDCOLLECT = "addCollect";// 对套图进行收藏
 
 
     public static  Observable<ReturnCallEntity> getStringDataNoToken(String path, String upData) {

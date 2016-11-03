@@ -21,6 +21,7 @@ import butterknife.OnClick;
 import vip.gudugudu.gudu.R;
 import vip.gudugudu.gudu.base.BaseActivity;
 import vip.gudugudu.gudu.base.util.ToastUtil;
+import vip.gudugudu.gudu.base.util.ToosUtils;
 import vip.gudugudu.gudu.data.entity.AlbumDetailEntity;
 import vip.gudugudu.gudu.view.widget.MyListView;
 
@@ -69,7 +70,8 @@ public class AlbumDetailActivity extends BaseActivity<AlbumDetailPresenter, Albu
         public void handleMessage(Message msg) {
             switch (msg.what){
                 case COLLECT_FLAG:
-
+                    showDialog();
+                    mPresenter.getCollec(String.valueOf(albumId));
                     break;
             }
         }
@@ -117,6 +119,25 @@ public class AlbumDetailActivity extends BaseActivity<AlbumDetailPresenter, Albu
     @Override
     public void getTableError(String s) {
         dissDialog();
+        ToastUtil.show(s);
+    }
+
+    @Override
+    public void getCollectView(String s) {
+        dissDialog();
+        ToastUtil.show(s);
+    }
+
+    @Override
+    public void getCollectError(String s) {
+        dissDialog();
+        ToastUtil.show(s);
+    }
+
+    @Override
+    public void getCollectTokenError(String s) {
+        dissDialog();
+        ToosUtils.goReLogin(this);
         ToastUtil.show(s);
     }
 
