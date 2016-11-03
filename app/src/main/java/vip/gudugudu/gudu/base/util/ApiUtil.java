@@ -50,6 +50,7 @@ public class ApiUtil {
     public static final String LOGIN = "Login";// 登录方法
     public static final String FEEDBACK = "FeedBack";// 反馈
     public static final String ADDCOLLECT = "addCollect";// 对套图进行收藏
+    public static final String GETCOLLECT = "GetCollect";// 获取用户收藏
 
 
     public static  Observable<ReturnCallEntity> getStringDataNoToken(String path, String upData) {
