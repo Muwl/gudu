@@ -26,7 +26,7 @@ public class CollectModel implements CollectContract.Model{
     public void delCollect(AlbumsEntity albumsEntity) {
         JSONObject jsonObject=new JSONObject();
         try {
-            jsonObject.put("albumid",albumsEntity.AlbumId);
+            jsonObject.put("albumId",albumsEntity.AlbumId);
         } catch (JSONException e) {
             e.printStackTrace();
         }

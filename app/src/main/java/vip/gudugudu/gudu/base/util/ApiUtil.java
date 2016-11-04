@@ -14,6 +14,7 @@ import rx.Observable;
 import rx.functions.Func1;
 import vip.gudugudu.gudu.api.Api;
 import vip.gudugudu.gudu.base.BaseEntity;
+import vip.gudugudu.gudu.base.util.helper.LogManager;
 import vip.gudugudu.gudu.base.util.helper.RxSchedulers;
 import vip.gudugudu.gudu.data.Pointer;
 import vip.gudugudu.gudu.data.entity.ReturnCallEntity;
@@ -83,6 +84,11 @@ public class ApiUtil {
     }
 
     public static  Observable<ReturnCallEntity> getStringDataToken(String path, String upData) {
+        if (!ToosUtils.isStringEmpty(upData)){
+            LogManager.LogShow("上传参数---",upData,LogManager.ERROR);
+            LogManager.LogShow("token---",SpUtil.getUserToken(),LogManager.ERROR);
+        }
+
        return Api.getInstance().service
                 .getTokenData(path,SpUtil.getUserToken(), upData)
                 .flatMap(new Func1<ReturnState, Observable<ReturnCallEntity>>() {

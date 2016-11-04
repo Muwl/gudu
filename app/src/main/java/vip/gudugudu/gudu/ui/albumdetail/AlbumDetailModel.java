@@ -10,6 +10,7 @@ import org.json.JSONObject;
 import rx.functions.Action1;
 import vip.gudugudu.gudu.base.util.ApiUtil;
 import vip.gudugudu.gudu.base.util.ToosUtils;
+import vip.gudugudu.gudu.base.util.helper.LogManager;
 import vip.gudugudu.gudu.data.ResponseListener;
 import vip.gudugudu.gudu.data.entity.AlbumDetailEntity;
 import vip.gudugudu.gudu.data.entity.ReturnCallEntity;
@@ -62,10 +63,12 @@ public class AlbumDetailModel implements AlbumDetailContract.Model {
     public void getCollect(String albumid) {
         JSONObject jsonObject=new JSONObject();
         try {
-            jsonObject.put("albumid",albumid);
+            jsonObject.put("albumId",albumid);
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
+
         ApiUtil.getStringDataToken(ApiUtil.ADDCOLLECT,jsonObject.toString()).subscribe(new Action1<ReturnCallEntity>() {
             @Override
             public void call(ReturnCallEntity callEntity) {

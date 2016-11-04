@@ -18,6 +18,7 @@ import vip.gudugudu.gudu.base.util.helper.RxSchedulers;
 import vip.gudugudu.gudu.data.Data;
 import vip.gudugudu.gudu.data.Repository;
 import vip.gudugudu.gudu.data.entity.AlbumsEntity;
+import vip.gudugudu.gudu.data.entity.CollectEntity;
 import vip.gudugudu.gudu.data.entity.ReturnCallEntity;
 
 /**
@@ -53,10 +54,13 @@ public class CollectAlbumsRepository extends Repository<AlbumsEntity> {
                 .flatMap(new Func1<ReturnCallEntity, Observable<Data<AlbumsEntity>>>() {
                     @Override
                     public Observable<Data<AlbumsEntity>> call(ReturnCallEntity callEntity) {
-                        List<AlbumsEntity> tabs=new Gson().fromJson(callEntity.result,new TypeToken<List<AlbumsEntity>>() {
+                        List<CollectEntity> tabs=new Gson().fromJson(callEntity.result,new TypeToken<List<CollectEntity>>() {
                         }.getType());
                         Data<AlbumsEntity> data=new Data<AlbumsEntity>();
-                        data.results= (ArrayList<AlbumsEntity>) tabs;
+                        data.results=new ArrayList<AlbumsEntity>();
+                        for (CollectEntity collectEntity:tabs){
+                            data.results.add(collectEntity.AlbumEntity);
+                        }
                         return  Observable.just(data).compose(RxSchedulers.io_main());
                     }
                 });

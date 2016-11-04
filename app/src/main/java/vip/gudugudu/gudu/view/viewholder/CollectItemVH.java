@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Handler;
 import android.support.v4.app.ActivityCompat;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -12,6 +13,7 @@ import butterknife.Bind;
 import vip.gudugudu.gudu.R;
 import vip.gudugudu.gudu.base.BaseViewHolder;
 import vip.gudugudu.gudu.base.util.ImageUtil;
+import vip.gudugudu.gudu.base.util.helper.LogManager;
 import vip.gudugudu.gudu.data.repository.AlbumsRepository;
 import vip.gudugudu.gudu.data.repository.CollectAlbumsRepository;
 import vip.gudugudu.gudu.ui.albumdetail.AlbumDetailActivity;
@@ -29,12 +31,14 @@ public class CollectItemVH extends BaseViewHolder<CollectAlbumsRepository> {
     TextView fhomeItemTime;
     @Bind(R.id.fhome_item_image)
     ImageView fhomeItemImage;
+
     Handler handler;
 
 
     public CollectItemVH(View v) {
         super(v);
     }
+
 
     @Override
     public int getType() {
@@ -57,14 +61,16 @@ public class CollectItemVH extends BaseViewHolder<CollectAlbumsRepository> {
                         , null)
         );
 
-        view.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View view) {
-                if (handler!=null){
-                    CustomeDialog customeDialog=new CustomeDialog(mContext,handler,"确定删除此收藏？",mSubject.data);
-                }
-                return true;
-            }
-        });
+
+//        view.setOnLongClickListener(new View.OnLongClickListener() {
+//            @Override
+//            public boolean onLongClick(View view) {
+//                LogManager.LogShow("----------","changanl---",LogManager.ERROR);
+//                if (handler!=null){
+//                    CustomeDialog customeDialog=new CustomeDialog(mContext,handler,"确定删除此收藏？",mSubject.data);
+//                }
+//                return true;
+//            }
+//        });
     }
 }

@@ -1,5 +1,9 @@
 package vip.gudugudu.gudu;
 
+import android.app.Dialog;
+
+import vip.gudugudu.gudu.api.Api;
+
 /**
  * Created by baixiaokang on 16/4/23.
  */
@@ -21,6 +25,17 @@ public class C {
     public static final boolean LOGOFF_VERBOSE = false;
     // 是否关闭debug输出
     public static final boolean LOGOFF_DEBUG = false;
+
+
+    public static String updateUrl;
+    public static Dialog updateDialog;
+    public static final String AppName = "咕嘟咕嘟";
+    public static String UpdatePath = "/gudu/Update/";
+    public static boolean updateData = true;
+    public static boolean updating = false;
+
+    public static final String UPDATE = Api.BASE_URL+"GetVersion";
+
 
 
 

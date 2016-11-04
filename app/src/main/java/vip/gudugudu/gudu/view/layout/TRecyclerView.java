@@ -55,6 +55,8 @@ public class TRecyclerView<T extends Repository> extends LinearLayout {
 
     public  BaseViewHolder mIVH;
 
+    public itemOnLongClickLister itemOnLongClickLister;
+
     public TRecyclerView(Context context) {
         super(context);
         init(context);
@@ -288,6 +290,8 @@ public class TRecyclerView<T extends Repository> extends LinearLayout {
             }
         }
 
+
+
         public void setHeadViewData(Object data) {
             this.mHeadData = data;
         }
@@ -322,6 +326,10 @@ public class TRecyclerView<T extends Repository> extends LinearLayout {
             notifyDataSetChanged();
         }
 
+        public List<T> getDatas(){
+            return mItemList;
+        }
+
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             try {
@@ -349,6 +357,25 @@ public class TRecyclerView<T extends Repository> extends LinearLayout {
                     position + 1 == getItemCount() ? (isHasMore ? new Object()
                             : null) : isHasHader == 1 && position == 0 ? mHeadData
                             : mItemList.get(position - isHasHader));
+
+            holder.itemView.setOnLongClickListener(new OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View view) {
+
+                    if (isHasHader==1 && position==0){
+                        return false;
+                    }
+
+                    if (isHasFooter==1 && (position-isHasHader==mItemList.size())){
+                        return  false;
+                    }
+                    if (itemOnLongClickLister!=null){
+                        itemOnLongClickLister.itemOnLongClick(position-isHasHader);
+                        return true;
+                    }
+                    return false;
+                }
+            });
         }
 
         public void removeItem(int position) {
@@ -357,14 +384,7 @@ public class TRecyclerView<T extends Repository> extends LinearLayout {
             if (mItemList.size() == 0) reFetch();
         }
 
-        public void removeItem(Object object) {
-            int poi=-1;
-            poi=mItemList.indexOf(object);
-            if (poi>=0){
-                removeItem(poi);
-            }
 
-        }
 
         public void upDateItem(int position, T item) {
             mItemList.remove(position);
@@ -372,5 +392,20 @@ public class TRecyclerView<T extends Repository> extends LinearLayout {
             notifyItemChanged(position);
         }
     }
+
+    public TRecyclerView.itemOnLongClickLister getItemOnLongClickLister() {
+        return itemOnLongClickLister;
+    }
+
+    public void setItemOnLongClickLister(TRecyclerView.itemOnLongClickLister itemOnLongClickLister) {
+        this.itemOnLongClickLister = itemOnLongClickLister;
+    }
+
+    public interface  itemOnLongClickLister{
+         void itemOnLongClick(int position);
+    }
+
+
+
 
 }

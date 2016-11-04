@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import butterknife.Bind;
@@ -19,7 +20,9 @@ import vip.gudugudu.gudu.base.BaseFragment;
 import vip.gudugudu.gudu.base.util.TUtil;
 import vip.gudugudu.gudu.base.util.ToastUtil;
 import vip.gudugudu.gudu.base.util.ToosUtils;
+import vip.gudugudu.gudu.base.util.helper.LogManager;
 import vip.gudugudu.gudu.data.entity.AlbumsEntity;
+import vip.gudugudu.gudu.data.repository.CollectAlbumsRepository;
 import vip.gudugudu.gudu.view.dialog.CustomeDialog;
 import vip.gudugudu.gudu.view.layout.TRecyclerView;
 import vip.gudugudu.gudu.view.viewholder.CollectItemVH;
@@ -36,14 +39,16 @@ public class CollectFragment extends BaseFragment<CollectPresenter, CollectModel
     LinearLayout fcollectRootview;
 
     private TRecyclerView mXRecyclerView;
+    int position=-1;
 
     private Handler handler=new Handler(){
         @Override
         public void handleMessage(Message msg) {
             switch (msg.what){
                 case CustomeDialog.RET_OK:
+                    position= (int) msg.obj;
                     ((BaseActivity)getActivity()).showDialog();
-                    mPresenter.delCollect((AlbumsEntity) msg.obj);
+                    mPresenter.delCollect(((CollectAlbumsRepository) mXRecyclerView.getAdapter().getDatas().get(position)).data);
                     break;
             }
         }
@@ -61,18 +66,37 @@ public class CollectFragment extends BaseFragment<CollectPresenter, CollectModel
         mXRecyclerView = new TRecyclerView(getActivity())
                 .setView(CollectItemVH.class);
         fcollectRootview.addView(mXRecyclerView, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
-        ((CollectItemVH)mXRecyclerView.mIVH).setHandler(handler);
+//        ((CollectItemVH)mXRecyclerView.mIVH).setHandler(handler);
+        mXRecyclerView.setItemOnLongClickLister(new TRecyclerView.itemOnLongClickLister() {
+            @Override
+            public void itemOnLongClick(int position) {
+                CustomeDialog customeDialog=new CustomeDialog(mContext,handler,"确定删除此收藏？",position);
+
+            }
+        });
         if (mXRecyclerView!=null){
-            mXRecyclerView.fetch();
+            mXRecyclerView.reFetch();
         }
 
     }
+
+//    @Override
+//    public void onHiddenChanged(boolean hidden) {
+//        super.onHiddenChanged(hidden);
+//        if (!hidden){
+//            if (mXRecyclerView!=null){
+//                mXRecyclerView.
+//                mXRecyclerView.fetch();
+//            }
+//        }
+//        LogManager.LogShow("---------------","==="+hidden,LogManager.ERROR);
+//    }
 
     @Override
     public void delCollectView(AlbumsEntity albumsEntity) {
         ToastUtil.show("删除成功");
         ((BaseActivity)getActivity()).dissDialog();
-        mXRecyclerView.getAdapter().removeItem(albumsEntity);
+        mXRecyclerView.getAdapter().removeItem(position);
     }
 
     @Override

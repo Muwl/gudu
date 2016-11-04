@@ -14,6 +14,7 @@ import android.os.Environment;
 import android.telephony.TelephonyManager;
 import android.widget.TextView;
 
+import java.io.File;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -96,6 +97,27 @@ public class ToosUtils {
             }
         }
         return true;
+    }
+
+
+    public static void deleteFile(File file) {
+        if (Environment.getExternalStorageState().equals(
+                Environment.MEDIA_MOUNTED)) {
+            if (file.exists()) {
+                if (file.isFile()) {
+                    file.delete();
+                }
+                // 如果它是一个目录
+                else if (file.isDirectory()) {
+                    // 声明目录下所有的文件 files[];
+                    File files[] = file.listFiles();
+                    for (int i = 0; i < files.length; i++) { // 遍历目录下所有的文件
+                        deleteFile(files[i]); // 把每个文件 用这个方法进行迭代
+                    }
+                }
+                file.delete();
+            }
+        }
     }
 
 

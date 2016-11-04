@@ -42,7 +42,7 @@
             android:paddingRight="15dp"
             android:paddingTop="12dp"
             android:text="确定"
-            android:textColor="#EF8641"
+            android:textColor="@color/bom_text_normal"
             android:textSize="@dimen/second_font" />
 
         <ImageView
@@ -63,7 +63,7 @@
             android:paddingRight="15dp"
             android:paddingTop="12dp"
             android:text="取消"
-            android:textColor="#EF8641"
+            android:textColor="@color/bom_text_normal"
             android:textSize="@dimen/second_font" />
     </LinearLayout>
 

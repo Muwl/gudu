@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     android:id="@+id/fcollect_rootview"
+    android:orientation="vertical"
     tools:context="vip.gudugudu.gudu.ui.main.CollectFragment">
 
     <!-- TODO: Update blank fragment layout -->
