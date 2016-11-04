@@ -3,11 +3,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
+    android:id="@+id/fcollect_rootview"
     tools:context="vip.gudugudu.gudu.ui.main.CollectFragment">
 
     <!-- TODO: Update blank fragment layout -->
    <include
        android:id="@+id/fcollect_title"
        layout="@layout/activity_title"/>
+
+
+
 
 </LinearLayout>

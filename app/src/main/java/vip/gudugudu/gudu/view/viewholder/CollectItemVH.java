@@ -29,6 +29,7 @@ public class CollectItemVH extends BaseViewHolder<CollectAlbumsRepository> {
     TextView fhomeItemTime;
     @Bind(R.id.fhome_item_image)
     ImageView fhomeItemImage;
+    Handler handler;
 
 
     public CollectItemVH(View v) {
@@ -38,6 +39,10 @@ public class CollectItemVH extends BaseViewHolder<CollectAlbumsRepository> {
     @Override
     public int getType() {
         return R.layout.fhome_item;
+    }
+
+    public void setHandler(Handler handler){
+        this.handler=handler;
     }
 
     @Override
@@ -55,7 +60,9 @@ public class CollectItemVH extends BaseViewHolder<CollectAlbumsRepository> {
         view.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
-                CustomeDialog customeDialog=new CustomeDialog(mContext,new Handler(),"确定删除此收藏？",mSubject.data);
+                if (handler!=null){
+                    CustomeDialog customeDialog=new CustomeDialog(mContext,handler,"确定删除此收藏？",mSubject.data);
+                }
                 return true;
             }
         });

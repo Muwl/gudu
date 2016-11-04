@@ -16,7 +16,7 @@ android {
         key {
             keyAlias 'gudu'
             keyPassword 'gudu123456'
-            storeFile file('D:/studiopro/gudu/gudu.jks')
+            storeFile file('E:/studio_pro/gudu/gudu.jks')
             storePassword 'gudu123456'
         }
     }

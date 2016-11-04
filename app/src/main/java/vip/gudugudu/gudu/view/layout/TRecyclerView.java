@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Handler;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -40,7 +41,7 @@ public class TRecyclerView<T extends Repository> extends LinearLayout {
     @Bind(R.id.swiperefresh)
     SwipeRefreshLayout swiperefresh;
     @Bind(R.id.recyclerview)
-    RecyclerView recyclerview;
+    public RecyclerView recyclerview;
     @Bind(R.id.ll_emptyview)
     LinearLayout ll_emptyview;
     private LinearLayoutManager mLayoutManager;
@@ -51,6 +52,8 @@ public class TRecyclerView<T extends Repository> extends LinearLayout {
 
     public RxManager mRxManager = new RxManager();
     private Map<String, String> param = new HashMap<>();
+
+    public  BaseViewHolder mIVH;
 
     public TRecyclerView(Context context) {
         super(context);
@@ -176,7 +179,7 @@ public class TRecyclerView<T extends Repository> extends LinearLayout {
 
     public TRecyclerView setView(Class<? extends BaseViewHolder<T>> cla) {
         try {
-            BaseViewHolder mIVH = ((BaseViewHolder) (cla.getConstructor(View.class)
+             mIVH = ((BaseViewHolder) (cla.getConstructor(View.class)
                     .newInstance(new LinearLayout(context))));
             int mType = mIVH.getType();
             this.model = ((Class<T>) ((ParameterizedType) (cla
@@ -352,6 +355,15 @@ public class TRecyclerView<T extends Repository> extends LinearLayout {
             mItemList.remove(position);
             notifyItemRemoved(position);
             if (mItemList.size() == 0) reFetch();
+        }
+
+        public void removeItem(Object object) {
+            int poi=-1;
+            poi=mItemList.indexOf(object);
+            if (poi>=0){
+                removeItem(poi);
+            }
+
         }
 
         public void upDateItem(int position, T item) {
