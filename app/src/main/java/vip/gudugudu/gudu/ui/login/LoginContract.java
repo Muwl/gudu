@@ -13,6 +13,7 @@ public interface LoginContract {
 
     interface Model extends BaseModel{
         void login(String mobile,String pwd);
+        void thirdLogin(String openid,String nickname,String figureurl);
     }
 
     interface View extends BaseView{
@@ -22,5 +23,6 @@ public interface LoginContract {
 
     abstract class Presenter extends BasePresenter<Model,View>{
         public abstract void login(String mobile,String pwd);
+        public abstract void thirdLogin(String openid,String nickname,String figureurl);
     }
 }

@@ -58,4 +58,38 @@ public class LoginModel implements LoginContract.Model {
             }
         });
     }
+
+    @Override
+    public void thirdLogin(String openid, String nickname, String figureurl) {
+        JSONObject jsonObject=new JSONObject();
+        try {
+            jsonObject.put("openid",openid);
+            jsonObject.put("nickname",nickname);
+            jsonObject.put("figureurl", figureurl);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        ApiUtil.getStringDataNoToken(ApiUtil.QQLOGIN,jsonObject.toString()).subscribe(new Action1<ReturnCallEntity>() {
+            @Override
+            public void call(ReturnCallEntity callEntity) {
+                if (ToosUtils.isStringEmpty(callEntity.state) || ApiUtil.RETURN_ERROR.equals(callEntity.state)){
+                    loginLister.onError(callEntity.result);
+                }else{
+                    try{
+                        RegisterEntity registerEntity=new Gson().fromJson(callEntity.result,RegisterEntity.class);
+                        loginLister.onSucess(registerEntity);
+                    }catch (Exception e){
+                        loginLister.onError("请求失败");
+                    }
+
+                }
+            }
+        }, new Action1<Throwable>() {
+            @Override
+            public void call(Throwable throwable) {
+                throwable.printStackTrace();
+                loginLister.onError("请求失败");
+            }
+        });
+    }
 }

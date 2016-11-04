@@ -146,6 +146,24 @@
             android:layout_height="1px"
             android:background="@color/division"/>
 
+
+        <TextView
+            android:id="@+id/setting_logout"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="40dp"
+            android:textColor="@color/white"
+            android:textSize="@dimen/second_font"
+            android:text="退出登录"
+            android:clickable="true"
+            android:visibility="gone"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:background="@drawable/red_btn"
+            android:gravity="center"
+            android:layout_height="wrap_content" />
+
     </LinearLayout>
 
 </LinearLayout>

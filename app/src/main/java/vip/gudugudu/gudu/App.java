@@ -4,6 +4,9 @@ import android.app.Application;
 import android.content.Context;
 import android.content.res.Resources;
 
+import com.umeng.socialize.PlatformConfig;
+import com.umeng.socialize.UMShareAPI;
+
 import vip.gudugudu.gudu.base.util.SpUtil;
 
 
@@ -17,7 +20,9 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         mApp = this;
+        PlatformConfig.setQQZone("101362016", "6367469bd6b322533edda35c02ff81f6");
         SpUtil.init(this);
+        UMShareAPI.get(this);
 
 
     }

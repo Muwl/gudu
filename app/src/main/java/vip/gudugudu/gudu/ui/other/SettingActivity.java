@@ -16,6 +16,8 @@ import butterknife.OnClick;
 import vip.gudugudu.gudu.R;
 import vip.gudugudu.gudu.base.BaseActivity;
 import vip.gudugudu.gudu.base.util.DataCleanManager;
+import vip.gudugudu.gudu.base.util.SpUtil;
+import vip.gudugudu.gudu.base.util.ToosUtils;
 import vip.gudugudu.gudu.view.dialog.CustomeDialog;
 
 /**
@@ -37,13 +39,22 @@ public class SettingActivity extends BaseActivity {
     ToggleButton settingToggle;
     @Bind(R.id.setting_codename)
     TextView settingCodename;
+    @Bind(R.id.setting_logout)
+    TextView settingLogout;
 
-    private Handler handler=new Handler(){
+    private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
-            switch (msg.what){
+            switch (msg.what) {
                 case CustomeDialog.RET_OK:
-                    DataCleanManager.clearAllCache(SettingActivity.this);
+                    int s= (int) msg.obj;
+                    if (s==0){
+                        DataCleanManager.clearAllCache(SettingActivity.this);
+                    }else if(s==-100){
+                        ToosUtils.goReLogin(SettingActivity.this);
+                        finish();
+                    }
+
                     break;
             }
         }
@@ -58,10 +69,15 @@ public class SettingActivity extends BaseActivity {
     public void initView() {
         titleTitle.setText("设置");
         settingCodename.setText(getVerCode(this));
+        if (ToosUtils.isStringEmpty(SpUtil.getUserToken())){
+            settingLogout.setVisibility(View.GONE);
+        }else{
+            settingLogout.setVisibility(View.VISIBLE);
+        }
     }
 
 
-    @OnClick({R.id.title_back, R.id.setting_account, R.id.setting_clear})
+    @OnClick({R.id.title_back, R.id.setting_account, R.id.setting_clear,R.id.setting_logout})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.title_back:
@@ -70,7 +86,10 @@ public class SettingActivity extends BaseActivity {
             case R.id.setting_account:
                 break;
             case R.id.setting_clear:
-                CustomeDialog customeDialog=new CustomeDialog(SettingActivity.this,handler,"确定清楚缓存？",null);
+                CustomeDialog customeDialog = new CustomeDialog(SettingActivity.this, handler, "确定清楚缓存？", 0);
+                break;
+            case R.id.setting_logout:
+                CustomeDialog customeDialog2 = new CustomeDialog(SettingActivity.this, handler, "确定退出登录？", -100);
                 break;
         }
     }
@@ -91,4 +110,5 @@ public class SettingActivity extends BaseActivity {
         return verName;
 
     }
+
 }

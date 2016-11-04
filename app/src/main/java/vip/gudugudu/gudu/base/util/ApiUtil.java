@@ -49,6 +49,7 @@ public class ApiUtil {
     public static final String GETALBUMSDETIAL = "GetAlbumsDetial";// 获取套图详情
     public static final String REGISTER = "Register";// 获取套图详情
     public static final String LOGIN = "Login";// 登录方法
+    public static final String QQLOGIN = "QQLogin";// 第三方登录方法
     public static final String FEEDBACK = "FeedBack";// 反馈
     public static final String ADDCOLLECT = "addCollect";// 对套图进行收藏
     public static final String GETCOLLECT = "GetCollect";// 获取用户收藏
@@ -56,6 +57,9 @@ public class ApiUtil {
 
 
     public static  Observable<ReturnCallEntity> getStringDataNoToken(String path, String upData) {
+        if (!ToosUtils.isStringEmpty(upData)){
+            LogManager.LogShow("上传参数---",upData,LogManager.ERROR);
+        }
        return Api.getInstance().service
                 .getNoTokenData(path, upData)
                 .flatMap(new Func1<ReturnState, Observable<ReturnCallEntity>>() {

@@ -20,6 +20,11 @@ public class LoginPresenter extends LoginContract.Presenter  implements Response
     }
 
     @Override
+    public void thirdLogin(String openid, String nickname, String figureurl) {
+        mModel.thirdLogin(openid,nickname,figureurl);
+    }
+
+    @Override
     public void onSucess(RegisterEntity data) {
         mView.getLoginView(data);
     }
