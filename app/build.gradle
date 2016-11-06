@@ -16,7 +16,7 @@ android {
         key {
             keyAlias 'gudu'
             keyPassword 'gudu123456'
-            storeFile file('E:/studio_pro/gudu/gudu.jks')
+            storeFile file('D:/studiopro/gudu/gudu.jks')
             storePassword 'gudu123456'
         }
     }
@@ -72,4 +72,5 @@ dependencies {
     compile files('libs/xUtils-2.6.14.jar')
     compile files('libs/umeng_social_api.jar')
     compile files('libs/mta-sdk-1.6.2.jar')
+    compile files('libs/umeng_social_view.jar')
 }

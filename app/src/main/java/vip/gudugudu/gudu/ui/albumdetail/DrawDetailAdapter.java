@@ -10,6 +10,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.lidroid.xutils.BitmapUtils;
+
 import vip.gudugudu.gudu.R;
 import vip.gudugudu.gudu.base.ViewHolder;
 import vip.gudugudu.gudu.base.util.DensityUtil;
@@ -30,11 +32,15 @@ public class DrawDetailAdapter extends BaseAdapter {
     private int type1 = 2;
     private int type2 = 3;
     private Handler handler;
+    private BitmapUtils bitmapUtils;
 
     public DrawDetailAdapter(Context context, AlbumDetailEntity entity, Handler handler) {
         this.entity = entity;
         this.context = context;
         this.handler = handler;
+        bitmapUtils=new BitmapUtils(context);
+        bitmapUtils.configDefaultLoadFailedImage(R.mipmap.loding);
+        bitmapUtils.configDefaultLoadingImage(R.mipmap.loding);
     }
 
     @Override
@@ -114,7 +120,12 @@ public class DrawDetailAdapter extends BaseAdapter {
         if (type == type0) {
             holder1.tip.setText(entity.AlbumTitle);
         } else if (type == type1) {
-            ImageUtil.loadImg(holder2.imageView, entity.Pictures.get(position - 1).Src);
+            if(!entity.Pictures.get(position - 1).Src.equals(holder2.imageView.getTag())) {
+                holder2.imageView.setTag(entity.Pictures.get(position - 1).Src);
+                bitmapUtils.display(holder2.imageView, entity.Pictures.get(position - 1).Src);
+            }
+
+//            ImageUtil.loadImg(holder2.imageView, entity.Pictures.get(position - 1).Src);
         } else if (type == type2) {
             holder3.rectext.setText(entity.RecommentsAlbums.get(position - 1 - entity.Pictures.size()).Title);
             holder3.rectext.setOnClickListener(new View.OnClickListener() {
