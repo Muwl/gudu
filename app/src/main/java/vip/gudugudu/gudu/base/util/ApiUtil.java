@@ -73,7 +73,7 @@ public class ApiUtil {
                             return Observable.just(new ReturnCallEntity(RETURN_ERROR,returnState.resMsg)).compose(RxSchedulers.io_main());
                         }
                         if (returnState.resCode==RETURN_TOKENERR){
-                            return Observable.just(new ReturnCallEntity(RETURN_TROKENERROR,returnState.resMsg)).compose(RxSchedulers.io_main());
+                            return Observable.just(new ReturnCallEntity(RETURN_ERROR,returnState.resMsg)).compose(RxSchedulers.io_main());
                         }
                         if (returnState.resCode==RETURN_OK && ToosUtils.isStringEmpty(returnState.resData)){
                             return Observable.just(new ReturnCallEntity(RETURN_NULL,"")).compose(RxSchedulers.io_main());

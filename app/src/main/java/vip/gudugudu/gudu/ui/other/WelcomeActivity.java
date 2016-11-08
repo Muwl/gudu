@@ -22,6 +22,7 @@ import com.lidroid.xutils.http.RequestParams;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
+import com.umeng.analytics.MobclickAgent;
 
 import java.io.File;
 
@@ -98,12 +99,22 @@ public class WelcomeActivity extends Activity {
     };
 
 
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onPageStart("MainScreen"); //统计页面，"MainScreen"为页面名称，可自定义
+    }
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPageEnd("MainScreen");
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_shape);
+        MobclickAgent.setDebugMode( true );
         initView();
         currentMin1 = System.currentTimeMillis();
         connection = new ServiceConnection() {

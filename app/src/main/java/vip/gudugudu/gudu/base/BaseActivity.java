@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 
+import com.umeng.analytics.MobclickAgent;
+
 import butterknife.ButterKnife;
 import vip.gudugudu.gudu.R;
 import vip.gudugudu.gudu.base.util.SpUtil;
@@ -47,7 +49,16 @@ public abstract class BaseActivity<T extends BasePresenter, E extends BaseModel>
     @Override
     protected void onResume() {
         super.onResume();
+        MobclickAgent.onResume(this);
     }
+
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MobclickAgent.onResume(this);
+    }
+
 
     public void reload() {
         Intent intent = getIntent();
