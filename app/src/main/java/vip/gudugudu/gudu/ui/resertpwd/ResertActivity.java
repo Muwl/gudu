@@ -11,6 +11,9 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import vip.gudugudu.gudu.R;
 import vip.gudugudu.gudu.base.BaseActivity;
+import vip.gudugudu.gudu.base.util.SpUtil;
+import vip.gudugudu.gudu.base.util.ToastUtil;
+import vip.gudugudu.gudu.base.util.ToosUtils;
 
 /**
  * Created by Administrator on 2016/10/26.
@@ -30,6 +33,8 @@ public class ResertActivity extends BaseActivity<ResertPresenter, ResertModel> i
     @Bind(R.id.resert_ok)
     TextView resertOk;
 
+    private String sphone;
+
     @Override
     public int getLayoutId() {
         return R.layout.activity_resertpwd;
@@ -38,6 +43,7 @@ public class ResertActivity extends BaseActivity<ResertPresenter, ResertModel> i
     @Override
     public void initView() {
         titleTitle.setText("重置密码");
+        sphone=getIntent().getStringExtra("phone");
     }
 
 
@@ -49,7 +55,50 @@ public class ResertActivity extends BaseActivity<ResertPresenter, ResertModel> i
                 finish();
                 break;
             case R.id.resert_ok:
+                if (checkInput()){
+                    showDialog();
+                    mPresenter.resertPwd(sphone,ToosUtils.getTextContent(resertPwd));
+                }
                 break;
         }
+    }
+
+    @Override
+    public void getResertPwdView(String s) {
+        dissDialog();
+        ToastUtil.show("修改密码成功");
+        setResult(RESULT_OK);
+        finish();
+    }
+
+    @Override
+    public void getResertPwdError(String s) {
+        dissDialog();
+        ToastUtil.show(s);
+    }
+
+
+    /**
+     * 注册输入
+     *
+     * @return
+     */
+    private boolean checkInput() {
+
+        if (ToosUtils.isTextEmpty(resertPwd)) {
+            ToastUtil.show( "密码不能为空！");
+            return false;
+        }
+
+        if (!ToosUtils.checkPwd(ToosUtils.getTextContent(resertPwd))) {
+            ToastUtil.show( "密码不能少于6位！");
+            return false;
+        }
+        if (!ToosUtils.getTextContent(resertPwd).equals(ToosUtils.getTextContent(resertRespwd))) {
+            ToastUtil.show( "两次输入的密码不一致！");
+            return false;
+        }
+        return true;
+
     }
 }

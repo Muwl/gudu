@@ -54,6 +54,7 @@ public class ApiUtil {
     public static final String ADDCOLLECT = "addCollect";// 对套图进行收藏
     public static final String GETCOLLECT = "GetCollect";// 获取用户收藏
     public static final String DELCOLLECT = "delCollect";// 删除用户收藏
+    public static final String CHANGEPASS = "ChangePass";// 重置密码
 
 
     public static  Observable<ReturnCallEntity> getStringDataNoToken(String path, String upData) {

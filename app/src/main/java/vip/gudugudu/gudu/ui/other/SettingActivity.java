@@ -1,6 +1,7 @@
 package vip.gudugudu.gudu.ui.other;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
@@ -18,6 +19,7 @@ import vip.gudugudu.gudu.base.BaseActivity;
 import vip.gudugudu.gudu.base.util.DataCleanManager;
 import vip.gudugudu.gudu.base.util.SpUtil;
 import vip.gudugudu.gudu.base.util.ToosUtils;
+import vip.gudugudu.gudu.ui.account.AccountActivity;
 import vip.gudugudu.gudu.view.dialog.CustomeDialog;
 
 /**
@@ -84,6 +86,8 @@ public class SettingActivity extends BaseActivity {
                 finish();
                 break;
             case R.id.setting_account:
+                Intent intent=new Intent(SettingActivity.this, AccountActivity.class);
+                startActivity(intent);
                 break;
             case R.id.setting_clear:
                 CustomeDialog customeDialog = new CustomeDialog(SettingActivity.this, handler, "确定清楚缓存？", 0);

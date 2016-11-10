@@ -12,11 +12,18 @@ import android.widget.TextView;
 
 import com.lidroid.xutils.BitmapUtils;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
 import vip.gudugudu.gudu.R;
 import vip.gudugudu.gudu.base.ViewHolder;
 import vip.gudugudu.gudu.base.util.DensityUtil;
 import vip.gudugudu.gudu.base.util.ImageUtil;
 import vip.gudugudu.gudu.data.entity.AlbumDetailEntity;
+import vip.gudugudu.gudu.data.entity.AlbumsEntity;
+import vip.gudugudu.gudu.data.entity.PicturesEntity;
+import vip.gudugudu.gudu.ui.other.PhotoShowActivity;
 
 import static android.R.attr.id;
 
@@ -124,6 +131,20 @@ public class DrawDetailAdapter extends BaseAdapter {
                 holder2.imageView.setTag(entity.Pictures.get(position - 1).Src);
                 bitmapUtils.display(holder2.imageView, entity.Pictures.get(position - 1).Src);
             }
+
+            holder2.imageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    List<String> strings=new ArrayList<String>();
+                    for (PicturesEntity picturesEntity:entity.Pictures){
+                        strings.add(picturesEntity.Src);
+                    }
+                    Intent intent=new Intent(context, PhotoShowActivity.class);
+                    intent.putExtra("photo", (Serializable) strings);
+                    intent.putExtra("position",position - 1);
+                    context.startActivity(intent);
+                }
+            });
 
 //            ImageUtil.loadImg(holder2.imageView, entity.Pictures.get(position - 1).Src);
         } else if (type == type2) {
