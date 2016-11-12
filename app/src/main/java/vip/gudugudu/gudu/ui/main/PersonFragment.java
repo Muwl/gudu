@@ -17,6 +17,7 @@ import vip.gudugudu.gudu.base.util.ImageUtil;
 import vip.gudugudu.gudu.base.util.SpUtil;
 import vip.gudugudu.gudu.base.util.ToosUtils;
 import vip.gudugudu.gudu.base.util.helper.LogManager;
+import vip.gudugudu.gudu.ui.account.AccountActivity;
 import vip.gudugudu.gudu.ui.feedback.FeedBackActivity;
 import vip.gudugudu.gudu.ui.login.LoginActivity;
 import vip.gudugudu.gudu.ui.other.SettingActivity;
@@ -67,6 +68,9 @@ public class PersonFragment extends BaseFragment<PersonPresenter, PersonModel> i
             case R.id.person_name:
                 if (ToosUtils.isStringEmpty(SpUtil.getUserToken())){
                     Intent intent=new Intent(getActivity(), LoginActivity.class);
+                    startActivity(intent);
+                }else{
+                    Intent intent=new Intent(getActivity(), AccountActivity.class);
                     startActivity(intent);
                 }
 

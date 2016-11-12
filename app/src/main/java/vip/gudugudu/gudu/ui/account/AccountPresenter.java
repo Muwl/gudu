@@ -2,6 +2,7 @@ package vip.gudugudu.gudu.ui.account;
 
 import java.io.File;
 
+import vip.gudugudu.gudu.base.util.SpUtil;
 import vip.gudugudu.gudu.data.ResponseListener;
 
 /**
@@ -21,6 +22,7 @@ public class AccountPresenter extends AccountContract.Presenter implements Respo
 
     @Override
     public void onSucess(String data) {
+        SpUtil.saveUserIcon(data);
         mView.updateIconSuc();
     }
 

@@ -11,6 +11,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import vip.gudugudu.gudu.R;
 import vip.gudugudu.gudu.base.BaseActivity;
+import vip.gudugudu.gudu.base.util.SpUtil;
 import vip.gudugudu.gudu.base.util.ToastUtil;
 import vip.gudugudu.gudu.base.util.ToosUtils;
 
@@ -38,6 +39,7 @@ public class UpdateNameActivity extends BaseActivity<UpdateNamePresenter, Update
     @Override
     public void initView() {
         titleTitle.setText("修改昵称");
+        updatenameName.setText(SpUtil.getNickname());
     }
 
     @Override
@@ -65,6 +67,7 @@ public class UpdateNameActivity extends BaseActivity<UpdateNamePresenter, Update
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.title_back:
+                finish();
                 break;
             case R.id.updatename_ok:
                 if (ToosUtils.isTextEmpty(updatenameName)){

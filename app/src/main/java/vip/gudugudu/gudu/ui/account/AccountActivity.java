@@ -143,6 +143,7 @@ public class AccountActivity extends BaseActivity<AccountPresenter, AccountModel
     public void updateIconSuc() {
         dissDialog();
         ToastUtil.show("修改成功");
+        ImageUtil.loadImg(accountIcon, SpUtil.getIconUrl());
     }
 
     @Override

@@ -30,7 +30,7 @@ public class Api {
 
 //    public static final String X_LC_Id = "i7j2k7bm26g7csk7uuegxlvfyw79gkk4p200geei8jmaevmx";
 //    public static final String X_LC_Key = "n6elpebcs84yjeaj5ht7x0eii9z83iea8bec9szerejj7zy3";
-    public static final String BASE_URL = "http://www.gudugudu.net:8888/API/";
+    public static final String BASE_URL = "http://www.gudugudu.net/API/";
 
     public static final int DEFAULT_TIMEOUT = 5;
 
