@@ -38,6 +38,18 @@ public class SpUtil {
         editor.commit();
     }
 
+    public static void saveUserName(String name){
+        SharedPreferences.Editor editor=prefs.edit();
+        editor.putString("nickname",name);
+        editor.commit();
+    }
+
+    public static void saveUserIcon(String icon){
+        SharedPreferences.Editor editor=prefs.edit();
+        editor.putString("IconUrl",icon);
+        editor.commit();
+    }
+
     public static int getUid(){
         return prefs.getInt("uid",0);
     }

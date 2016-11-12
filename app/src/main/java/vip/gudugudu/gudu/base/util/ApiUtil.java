@@ -6,10 +6,13 @@ import android.util.Log;
 
 import com.google.gson.Gson;
 
+import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
 import rx.Observable;
 import rx.functions.Func1;
 import vip.gudugudu.gudu.api.Api;
@@ -55,6 +58,8 @@ public class ApiUtil {
     public static final String GETCOLLECT = "GetCollect";// 获取用户收藏
     public static final String DELCOLLECT = "delCollect";// 删除用户收藏
     public static final String CHANGEPASS = "ChangePass";// 重置密码
+    public static final String UPLOADHEAD = "UploadHead";// 上传头像
+    public static final String CHANGEUSER = "ChangeUser";// 修改用户信息
 
 
     public static  Observable<ReturnCallEntity> getStringDataNoToken(String path, String upData) {
@@ -99,6 +104,38 @@ public class ApiUtil {
                 .flatMap(new Func1<ReturnState, Observable<ReturnCallEntity>>() {
                     @Override
                     public Observable<ReturnCallEntity> call(ReturnState returnState) {
+
+                        if (returnState==null){
+                            return  Observable.just(new ReturnCallEntity(RETURN_ERROR,"请求失败")).compose(RxSchedulers.io_main());
+                        }
+                        if (returnState.resCode==RETURN_ERR){
+                            return Observable.just(new ReturnCallEntity(RETURN_ERROR,returnState.resMsg)).compose(RxSchedulers.io_main());
+                        }
+                        if (returnState.resCode==RETURN_TOKENERR){
+                            return Observable.just(new ReturnCallEntity(RETURN_TROKENERROR,returnState.resMsg)).compose(RxSchedulers.io_main());
+                        }
+                        if (returnState.resCode==RETURN_OK && ToosUtils.isStringEmpty(returnState.resData)){
+                            return Observable.just(new ReturnCallEntity(RETURN_NULL,"")).compose(RxSchedulers.io_main());
+                        }else{
+                            Log.e("-----返回",returnState.resData);
+                            return Observable.just(new ReturnCallEntity(RETURN_SUC,returnState.resData)).compose(RxSchedulers.io_main());
+                        }
+                    }
+
+                }).compose(RxSchedulers.io_main());
+
+    }
+
+    public static  Observable<ReturnCallEntity> upodateFile(String path, File file) {
+        RequestBody requestBody = RequestBody.create(MediaType.parse("image/*"), file);
+       return Api.getInstance().service
+                .uploadFile(path,SpUtil.getUserToken(), requestBody)
+                .flatMap(new Func1<ReturnState, Observable<ReturnCallEntity>>() {
+                    @Override
+                    public Observable<ReturnCallEntity> call(ReturnState returnState) {
+                        if (returnState!=null){
+                            Log.e("-----返回",new Gson().toJson(returnState));
+                        }
 
                         if (returnState==null){
                             return  Observable.just(new ReturnCallEntity(RETURN_ERROR,"请求失败")).compose(RxSchedulers.io_main());

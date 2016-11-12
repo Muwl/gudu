@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.ImageView;
@@ -15,6 +16,7 @@ import com.lzy.imagepicker.bean.ImageItem;
 import com.lzy.imagepicker.ui.ImageGridActivity;
 import com.lzy.imagepicker.view.CropImageView;
 
+import java.io.File;
 import java.util.ArrayList;
 
 import butterknife.Bind;
@@ -25,6 +27,10 @@ import vip.gudugudu.gudu.base.BaseActivity;
 import vip.gudugudu.gudu.base.GlideImageLoader;
 import vip.gudugudu.gudu.base.util.ImageUtil;
 import vip.gudugudu.gudu.base.util.SpUtil;
+import vip.gudugudu.gudu.base.util.ToastUtil;
+import vip.gudugudu.gudu.base.util.ToosUtils;
+import vip.gudugudu.gudu.base.util.helper.LogManager;
+import vip.gudugudu.gudu.ui.updatename.UpdateNameActivity;
 import vip.gudugudu.gudu.view.dialog.PhotoDialog;
 import vip.gudugudu.gudu.view.widget.CircleImageView;
 
@@ -102,11 +108,14 @@ public class AccountActivity extends BaseActivity<AccountPresenter, AccountModel
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.title_back:
+                finish();
                 break;
             case R.id.account_iconlin:
                 PhotoDialog photoDialog=new PhotoDialog(AccountActivity.this,handler);
                 break;
             case R.id.account_namelin:
+                Intent intent=new Intent(AccountActivity.this, UpdateNameActivity.class);
+                startActivity(intent);
                 break;
         }
     }
@@ -118,9 +127,34 @@ public class AccountActivity extends BaseActivity<AccountPresenter, AccountModel
             if (data != null && requestCode == 100) {
                 ArrayList<ImageItem> images = (ArrayList<ImageItem>) data.getSerializableExtra(ImagePicker.EXTRA_RESULT_ITEMS);
                 if (images!=null && images.size()>0){
-                    ImageUtil.loadImg(accountIcon,images.get(0).path);
+                    File file=new File(images.get(0).path);
+                    if (file!=null){
+                        showDialog();
+                        mPresenter.updateIcon(file);
+                    }
+//                    LogManager.LogShow("----------------",images.get(0).path,LogManager.ERROR);
+//                    ImageUtil.loadImg(accountIcon,images.get(0).path);
                 }
             }
         }
+    }
+
+    @Override
+    public void updateIconSuc() {
+        dissDialog();
+        ToastUtil.show("修改成功");
+    }
+
+    @Override
+    public void updateIconError(String s) {
+        dissDialog();
+        ToastUtil.show(s);
+    }
+
+    @Override
+    public void updateIconTokenError(String s) {
+        dissDialog();
+        ToosUtils.goReLogin(this);
+        ToastUtil.show(s);
     }
 }

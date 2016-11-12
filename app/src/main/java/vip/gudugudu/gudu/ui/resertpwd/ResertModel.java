@@ -27,7 +27,7 @@ public class ResertModel implements ResertContract.Model {
         JSONObject jsonObject=new JSONObject();
         try {
             jsonObject.put("mobile",mobile);
-            jsonObject.put("pwd", MD5Util.MD5(pwd));
+            jsonObject.put("newpass", MD5Util.MD5(pwd));
         } catch (JSONException e) {
             e.printStackTrace();
         }
