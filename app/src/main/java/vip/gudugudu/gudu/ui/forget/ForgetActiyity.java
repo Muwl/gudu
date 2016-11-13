@@ -127,16 +127,21 @@ public class ForgetActiyity extends BaseActivity<ForgetPresenter, ForgetModel> i
 
         @Override
         public void onFinish() {// 计时完毕时触发
-            forgetpwdGetcode.setText("获取验证码");
-            forgetpwdGetcode.setClickable(true);
-            forgetpwdGetcode.setEnabled(true);
+            if (forgetpwdGetcode!=null){
+                forgetpwdGetcode.setText("获取验证码");
+                forgetpwdGetcode.setClickable(true);
+                forgetpwdGetcode.setEnabled(true);
+            }
+
         }
 
         @Override
         public void onTick(long millisUntilFinished) {// 计时过程显示
-            forgetpwdGetcode.setClickable(false);
-            forgetpwdGetcode.setEnabled(false);
-            forgetpwdGetcode.setText(millisUntilFinished / 1000 + "S");
+            if (forgetpwdGetcode!=null) {
+                forgetpwdGetcode.setClickable(false);
+                forgetpwdGetcode.setEnabled(false);
+                forgetpwdGetcode.setText(millisUntilFinished / 1000 + "S");
+            }
         }
     }
 
@@ -186,6 +191,13 @@ public class ForgetActiyity extends BaseActivity<ForgetPresenter, ForgetModel> i
         }
         return true;
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        SMSSDK.unregisterEventHandler(eh);
+        time.cancel();
+        super.onDestroy();
     }
 
 }

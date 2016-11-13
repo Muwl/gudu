@@ -141,6 +141,9 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter, RegisterMo
 
         @Override
         public void onFinish() {// 计时完毕时触发
+            if (registerGetcode==null){
+                return;
+            }
             registerGetcode.setText("获取验证码");
             registerGetcode.setClickable(true);
             registerGetcode.setEnabled(true);
@@ -148,6 +151,9 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter, RegisterMo
 
         @Override
         public void onTick(long millisUntilFinished) {// 计时过程显示
+            if (registerGetcode==null){
+                return;
+            }
             registerGetcode.setClickable(false);
             registerGetcode.setEnabled(false);
             registerGetcode.setText(millisUntilFinished / 1000 + "S");
@@ -221,6 +227,7 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter, RegisterMo
     @Override
     protected void onDestroy() {
         SMSSDK.unregisterEventHandler(eh);
+        time.cancel();
         super.onDestroy();
     }
 }
